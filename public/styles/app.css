@@ -33,3 +33,14 @@ body {
 .mixed-vinyl-container:hover {
     color: #fff;
 }
+
+.pagination {
+    --bs-pagination-bg: rgb(23,36,44);
+    --bs-pagination-color: #bbb;
+    --bs-pagination-disabled-color: #ddd;
+    --bs-pagination-disabled-bg: none;
+    --bs-pagination-disabled-border-color: #666;
+    --bs-pagination-active-border-color: #666;
+    --bs-pagination-border-color: none;
+    --bs-pagination-active-bg: rgba(34,47,54,1);
+}
