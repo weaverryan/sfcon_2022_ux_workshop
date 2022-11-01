@@ -75,5 +75,9 @@
             "require": "6.2.*",
             "docker": true
         }
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "zenstruck/foundry": "^1.22"
     }
 }
