@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\VinylMix;
-use App\Repository\VinylMixRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
