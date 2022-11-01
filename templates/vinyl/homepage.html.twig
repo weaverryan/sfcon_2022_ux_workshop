@@ -12,11 +12,9 @@
         <div class="col-12 col-md-8 ps-5">
             <h2 class="mb-4">10 songs (30 minutes of 60 still available)</h2>
             {% for track in tracks %}
-            <div class="song-list" {{ stimulus_controller('song-controls', {
-                infoUrl: path('api_songs_get_one', { id: loop.index })
-            }) }}>
+            <div class="song-list">
                 <div class="d-flex mb-3">
-                    <a href="#" {{ stimulus_action('song-controls', 'play') }}>
+                    <a href="#">
                         <i class="fas fa-play me-3"></i>
                     </a>
                     <span class="song-details">{{ track.song }} - {{ track.artist }}</span>
