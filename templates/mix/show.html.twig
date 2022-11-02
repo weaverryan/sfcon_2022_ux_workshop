@@ -14,7 +14,7 @@
                 <p>{{ mix.description }}</p>
 
                 {{ mix.votesString }} votes
-                <form action="{{ path('app_mix_vote', {id: mix.id }) }}" method="POST">
+                <div>
                     <button
                         type="submit"
                         class="btn btn-outline-primary"
@@ -27,7 +27,7 @@
                         name="direction"
                         value="down"
                     ><span class="fa fa-thumbs-down"></span></button>
-                </form>
+                </div>
 
                 <hr>
 
