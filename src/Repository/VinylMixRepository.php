@@ -59,13 +59,18 @@ class VinylMixRepository extends ServiceEntityRepository
         return $queryBuilder->orderBy('mix.votes', 'DESC');
     }
 
-//    public function findOneBySomeField($value): ?VinylMix
-//    {
-//        return $this->createQueryBuilder('v')
-//            ->andWhere('v.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findLatest(): VinylMix
+    {
+        $mix = $this->createQueryBuilder('mix')
+            ->orderBy('mix.createdAt', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        if (!$mix) {
+            throw new \Exception('no mix in the database!');
+        }
+
+        return $mix;
+    }
 }

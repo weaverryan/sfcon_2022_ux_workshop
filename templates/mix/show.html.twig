@@ -28,6 +28,14 @@
                         value="down"
                     ><span class="fa fa-thumbs-down"></span></button>
                 </form>
+
+                <hr>
+
+                {% for track in mix.tracks %}
+                    {{ include('mix/_song_item.html.twig', {
+                        withControls: false
+                    }) }}
+                {% endfor %}
             </div>
         </div>
     </div>

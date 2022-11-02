@@ -7,6 +7,7 @@ use App\Repository\VinylMixRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
+use function Symfony\Component\String\u;
 
 /**
  * @extends ModelFactory<VinylMix>
@@ -31,18 +32,16 @@ final class VinylMixFactory extends ModelFactory
     public function __construct()
     {
         parent::__construct();
-
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
     }
 
     protected function getDefaults(): array
     {
         return [
-            'title' => self::faker()->words(5, true),
+            'title' => u(self::faker()->words(5, true))->title(),
             'description' => self::faker()->paragraph(),
-            'trackCount' => self::faker()->numberBetween(5, 20),
             'genre' => self::faker()->randomElement(['pop', 'rock']),
             'votes' => self::faker()->numberBetween(-50, 50),
+            'tracks' => TrackFactory::new()->many(5, 15),
         ];
     }
 

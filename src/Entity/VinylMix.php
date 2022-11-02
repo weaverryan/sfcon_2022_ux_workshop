@@ -36,6 +36,9 @@ class VinylMix
     #[Slug(fields: ['title'])]
     private ?string $slug = null;
 
+    /**
+     * @var Collection<Track>
+     */
     #[ORM\OneToMany(mappedBy: 'mix', targetEntity: Track::class, orphanRemoval: true)]
     #[ORM\OrderBy(['trackNumber' => 'ASC'])]
     private Collection $tracks;
@@ -76,14 +79,7 @@ class VinylMix
 
     public function getTrackCount(): ?int
     {
-        return $this->trackCount;
-    }
-
-    public function setTrackCount(int $trackCount): self
-    {
-        $this->trackCount = $trackCount;
-
-        return $this;
+        return count($this->tracks);
     }
 
     public function getGenre(): ?string
@@ -176,5 +172,25 @@ class VinylMix
         }
 
         return $this;
+    }
+
+    public function getMinutesRemaining(): int
+    {
+        $length = 0;
+        foreach ($this->tracks as $track) {
+            $length += $track->getLength();
+        }
+
+        return floor(($this->getTotalPossibleSeconds() - $length) / 60);
+    }
+
+    public function getTotalPossibleMinutes(): int
+    {
+        return floor($this->getTotalPossibleSeconds() / 60);
+    }
+
+    private function getTotalPossibleSeconds(): int
+    {
+        return 60 * 60;
     }
 }

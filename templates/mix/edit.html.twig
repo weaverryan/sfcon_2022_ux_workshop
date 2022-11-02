@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Mix {{ mix.title }} | {{ parent() }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="d-inline me-3">{{ mix.title }}</h1> <i class="fas fa-edit"></i>
+    <div class="row mt-5">
+        <div class="col-12 col-md-4">
+            {{ include('mix/_recordSvg.html.twig') }}
+        </div>
+        <div class="col-12 col-md-8 ps-5">
+            <h2 class="mb-4">{{ mix.tracks|length }} songs ({{ mix.MinutesRemaining }} minutes of {{ mix.totalPossibleMinutes }} still available)</h2>
+            {% for track in mix.tracks %}
+                {{ include('mix/_song_item.html.twig', {
+                    withControls: true
+                }) }}
+            {% endfor %}
+            <button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Add a song</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
