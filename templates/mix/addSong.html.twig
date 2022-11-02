@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add a song{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Add a Song</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.songTitle) }}
+        {{ form_row(form.artistName) }}
+        {{ form_row(form.length) }}
+
+        <button type="submit" class="btn btn-primary">Add <span class="fa fa-plus"></span></button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
+
+

@@ -193,4 +193,12 @@ class VinylMix
     {
         return 60 * 60;
     }
+
+    public function getNextTrackNumber(): int
+    {
+        $tracks = $this->getTracks()->toArray();
+        $track = end($tracks);
+
+        return $track ? ($track->getTrackNumber() + 1) : 1;
+    }
 }

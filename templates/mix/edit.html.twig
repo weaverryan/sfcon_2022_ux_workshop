@@ -16,7 +16,9 @@
                     withControls: true
                 }) }}
             {% endfor %}
-            <button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Add a song</button>
+            <a href="{{ path('app_mix_edit_add_song', {
+                slug: mix.slug,
+            }) }}" class="btn btn-success"><i class="fas fa-plus"></i> Add a song</a>
         </div>
     </div>
 </div>

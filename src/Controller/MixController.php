@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Track;
 use App\Entity\VinylMix;
+use App\Form\TrackFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +26,31 @@ class MixController extends AbstractController
     {
         return $this->render('mix/edit.html.twig', [
             'mix' => $mix,
+        ]);
+    }
+
+    #[Route('/mix/edit/{slug}/add-song', name: 'app_mix_edit_add_song')]
+    public function editAddSong(VinylMix $mix, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $track = new Track();
+        $track->setMix($mix);
+        $form = $this->createForm(TrackFormType::class, $track);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $track->setTrackNumber($mix->getNextTrackNumber());
+
+            $entityManager->persist($track);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_mix_edit', [
+                'slug' => $mix->getSlug(),
+            ]);
+        }
+
+        return $this->render('mix/addSong.html.twig', [
+            'mix' => $mix,
+            'form' => $form,
         ]);
     }
 

@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\TrackRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: TrackRepository::class)]
 class Track
@@ -17,12 +19,16 @@ class Track
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[NotBlank]
     private ?string $songTitle = null;
 
     #[ORM\Column(length: 255)]
+    #[NotBlank]
     private ?string $artistName = null;
 
     #[ORM\Column]
+    #[NotBlank]
+    #[GreaterThanOrEqual(0)]
     private ?int $length = null;
 
     #[ORM\Column]
