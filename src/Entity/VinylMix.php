@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VinylMixRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation\Slug;
@@ -24,9 +26,6 @@ class VinylMix
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?int $trackCount = null;
-
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
 
@@ -36,6 +35,15 @@ class VinylMix
     #[ORM\Column(length: 100, unique: true)]
     #[Slug(fields: ['title'])]
     private ?string $slug = null;
+
+    #[ORM\OneToMany(mappedBy: 'mix', targetEntity: Track::class, orphanRemoval: true)]
+    #[ORM\OrderBy(['trackNumber' => 'ASC'])]
+    private Collection $tracks;
+
+    public function __construct()
+    {
+        $this->tracks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -136,6 +144,36 @@ class VinylMix
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Track>
+     */
+    public function getTracks(): Collection
+    {
+        return $this->tracks;
+    }
+
+    public function addTrack(Track $track): self
+    {
+        if (!$this->tracks->contains($track)) {
+            $this->tracks->add($track);
+            $track->setMix($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrack(Track $track): self
+    {
+        if ($this->tracks->removeElement($track)) {
+            // set the owning side to null (unless already changed)
+            if ($track->getMix() === $this) {
+                $track->setMix(null);
+            }
+        }
 
         return $this;
     }
