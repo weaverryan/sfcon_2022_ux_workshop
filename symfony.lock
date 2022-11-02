@@ -217,6 +217,18 @@
     "symfony/runtime": {
         "version": "v6.2.0-BETA1"
     },
+    "symfony/security-bundle": {
+        "version": "6.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.0",
+            "ref": "8a5b112826f7d3d5b07027f93786ae11a1c7de48"
+        },
+        "files": [
+            "config/packages/security.yaml"
+        ]
+    },
     "symfony/service-contracts": {
         "version": "v3.1.1"
     },
