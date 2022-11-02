@@ -1,0 +1,25 @@
+diff --git a/assets/controllers/vote-controller.js b/assets/controllers/vote-controller.js
+index 17dc6c9..a39216e 100644
+--- a/assets/controllers/vote-controller.js
++++ b/assets/controllers/vote-controller.js
+@@ -4,14 +4,16 @@ export default class extends Controller {
+     static targets = ['total'];
+ 
+     upVote() {
+-        const total = parseInt(this.totalTarget.innerText.trim());
+-
+-        this.totalTarget.innerText = total + 1;
++        this.#changeVote(+1);
+     }
+ 
+     downVote() {
++        this.#changeVote(-1);
++    }
++
++    #changeVote(change) {
+         const total = parseInt(this.totalTarget.innerText.trim());
+ 
+-        this.totalTarget.innerText = total - 1;
++        this.totalTarget.innerText = total + change;
+     }
+ }

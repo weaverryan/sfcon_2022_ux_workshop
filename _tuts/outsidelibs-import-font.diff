@@ -1,0 +1,23 @@
+diff --git a/assets/styles/app.css b/assets/styles/app.css
+index 74fb3a0..c445370 100644
+--- a/assets/styles/app.css
++++ b/assets/styles/app.css
+@@ -1,4 +1,5 @@
+ @import '~bootstrap';
++@import '~@fontsource/roboto-condensed';
+ 
+ body {
+     background-color: #17242C;
+diff --git a/templates/base.html.twig b/templates/base.html.twig
+index e359ce9..61e37e5 100644
+--- a/templates/base.html.twig
++++ b/templates/base.html.twig
+@@ -10,8 +10,6 @@
+ 
+         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+         {% block stylesheets %}
+-            <link href="https://fonts.googleapis.com/css?family=Roboto Condensed" rel="stylesheet">
+-
+             {{ encore_entry_link_tags('app') }}
+         {% endblock %}
+ 

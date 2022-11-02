@@ -1,0 +1,27 @@
+diff --git a/assets/controllers/vote-controller.js b/assets/controllers/vote-controller.js
+index 7d19503..17dc6c9 100644
+--- a/assets/controllers/vote-controller.js
++++ b/assets/controllers/vote-controller.js
+@@ -8,4 +8,10 @@ export default class extends Controller {
+ 
+         this.totalTarget.innerText = total + 1;
+     }
++
++    downVote() {
++        const total = parseInt(this.totalTarget.innerText.trim());
++
++        this.totalTarget.innerText = total - 1;
++    }
+ }
+diff --git a/templates/mix/show.html.twig b/templates/mix/show.html.twig
+index d21e28e..c1bf716 100644
+--- a/templates/mix/show.html.twig
++++ b/templates/mix/show.html.twig
+@@ -23,6 +23,7 @@
+                     <button
+                         type="submit"
+                         class="btn btn-outline-primary"
++                        {{ stimulus_action('vote', 'downVote') }}
+                     ><span class="fa fa-thumbs-down"></span></button>
+                 </div>
+ 

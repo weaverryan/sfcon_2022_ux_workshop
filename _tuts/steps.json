@@ -1,0 +1,70 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "encore-install-it",
+            "name": "Encore: install it",
+            "description": null
+        },
+        {
+            "id": "encore-npm-install",
+            "name": "Encore: npm install",
+            "description": null
+        },
+        {
+            "id": "encore-move-css-into-app-css",
+            "name": "Encore: move CSS into app.css",
+            "description": null
+        },
+        {
+            "id": "outsidelibs-install-bootstrap",
+            "name": "OutsideLibs: install bootstrap",
+            "description": null
+        },
+        {
+            "id": "outsidelibs-import-bootstrap-css",
+            "name": "OutsideLibs: import bootstrap CSS",
+            "description": null
+        },
+        {
+            "id": "outsidelibs-install-font",
+            "name": "OutsideLibs: install font",
+            "description": null
+        },
+        {
+            "id": "outsidelibs-import-font",
+            "name": "OutsideLibs: import font",
+            "description": null
+        },
+        {
+            "id": "stimulus-init-controller",
+            "name": "Stimulus: init controller",
+            "description": null
+        },
+        {
+            "id": "stimulus-add-action-for-upvote",
+            "name": "Stimulus: add action for upVote",
+            "description": null
+        },
+        {
+            "id": "stimulus-add-target-and-update-count",
+            "name": "Stimulus: Add target & update count",
+            "description": null
+        },
+        {
+            "id": "stimulus-add-downvote",
+            "name": "Stimulus: Add downVote()",
+            "description": null
+        },
+        {
+            "id": "stimulus-refactor-private-method",
+            "name": "Stimulus: refactor private method",
+            "description": null
+        }
+    ],
+    "sha": "7c7c4448dc873d6d795dca77bef90c939c23d3a7"
+}
