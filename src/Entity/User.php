@@ -35,6 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\ManyToOne]
+    #[NotBlank]
     private ?Track $favoriteTrack = null;
 
     public function getId(): ?int
