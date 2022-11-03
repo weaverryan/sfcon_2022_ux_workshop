@@ -41,7 +41,7 @@ final class VinylMixFactory extends ModelFactory
             'description' => self::faker()->paragraph(),
             'genre' => self::faker()->randomElement(['pop', 'rock']),
             'votes' => self::faker()->numberBetween(-50, 50),
-            'tracks' => TrackFactory::new()->many(5, 15),
+            'tracks' => TrackFactory::new()->many(5, 10),
         ];
     }
 
