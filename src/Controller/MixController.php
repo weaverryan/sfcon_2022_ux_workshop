@@ -33,7 +33,7 @@ class MixController extends AbstractController
     public function editAddSong(VinylMix $mix, Request $request, EntityManagerInterface $entityManager): Response
     {
         $track = new Track();
-        $track->setMix($mix);
+        $mix->addTrack($track);
         $form = $this->createForm(TrackFormType::class, $track);
 
         $form->handleRequest($request);
