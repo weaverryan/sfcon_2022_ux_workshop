@@ -1,0 +1,15 @@
+diff --git a/src/Controller/MixController.php b/src/Controller/MixController.php
+index c1d7b69..d047c5c 100644
+--- a/src/Controller/MixController.php
++++ b/src/Controller/MixController.php
+@@ -34,7 +34,9 @@ class MixController extends AbstractController
+     {
+         $track = new Track();
+         $track->setMix($mix);
+-        $form = $this->createForm(TrackFormType::class, $track);
++        $form = $this->createForm(TrackFormType::class, $track, [
++            'action' => $request->getUri(),
++        ]);
+ 
+         $form->handleRequest($request);
+         if ($form->isSubmitted() && $form->isValid()) {

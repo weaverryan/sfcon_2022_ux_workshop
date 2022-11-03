@@ -109,7 +109,72 @@
             "id": "ajax-use-ajax-response",
             "name": "Ajax: use Ajax response",
             "description": null
+        },
+        {
+            "id": "ux-install-autocomplete",
+            "name": "UX: install autocomplete",
+            "description": null
+        },
+        {
+            "id": "ux-activate-on-registration-form",
+            "name": "UX: activate on registration form",
+            "description": null
+        },
+        {
+            "id": "ux-change-css-file-to-bootstrap",
+            "name": "UX: change CSS file to bootstrap",
+            "description": null
+        },
+        {
+            "id": "ux-make-autocomplete",
+            "name": "UX: make:autocomplete",
+            "description": null
+        },
+        {
+            "id": "ux-use-autocomplete-field",
+            "name": "UX: use autocomplete field",
+            "description": null
+        },
+        {
+            "id": "turbo-install-it",
+            "name": "Turbo: Install it",
+            "description": null
+        },
+        {
+            "id": "turbo-activate-asset-tracking",
+            "name": "Turbo: activate asset tracking",
+            "description": null
+        },
+        {
+            "id": "frames-add-frame-around-new-song",
+            "name": "Frames: Add frame around new song",
+            "description": null
+        },
+        {
+            "id": "frames-fix-form-action",
+            "name": "Frames: Fix form action",
+            "description": null
+        },
+        {
+            "id": "frames-advance-url",
+            "name": "Frames: Advance URL",
+            "description": null
+        },
+        {
+            "id": "frames-add-frame-on-browse-page",
+            "name": "Frames: Add frame on browse page",
+            "description": null
+        },
+        {
+            "id": "frames-target-top",
+            "name": "Frames: target _top",
+            "description": null
+        },
+        {
+            "id": "frames-add-frame-for-next-page",
+            "name": "Frames: add frame for next page",
+            "description": null
         }
     ],
-    "sha": "9fd85a8f8095a51ea977be5b2708cfcdde017607"
+    "sha": "e475a21f3281bdda9c5a9cccca069fc34222afcc"
 }

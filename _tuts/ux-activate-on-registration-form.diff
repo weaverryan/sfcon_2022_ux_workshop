@@ -1,0 +1,12 @@
+diff --git a/src/Form/RegistrationFormType.php b/src/Form/RegistrationFormType.php
+index 60f1007..f81dc1f 100644
+--- a/src/Form/RegistrationFormType.php
++++ b/src/Form/RegistrationFormType.php
+@@ -26,6 +26,7 @@ class RegistrationFormType extends AbstractType
+                 'choice_label' => function(Track $track) {
+                     return sprintf('%s (by %s)', $track->getSongTitle(), $track->getArtistName());
+                 },
++                'autocomplete' => true,
+             ])
+             ->add('agreeTerms', CheckboxType::class, [
+                 'mapped' => false,

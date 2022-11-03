@@ -1,0 +1,22 @@
+diff --git a/templates/vinyl/browse.html.twig b/templates/vinyl/browse.html.twig
+index 8b6ee21..4adb777 100644
+--- a/templates/vinyl/browse.html.twig
++++ b/templates/vinyl/browse.html.twig
+@@ -25,7 +25,7 @@
+ 
+     <div>
+         <h2 class="mt-5">Mixes</h2>
+-        <div>
++        <turbo-frame id="mix-list-page-{{ pager.currentPage }}">
+             <div class="row">
+                 {% for mix in pager %}
+                 <div class="col col-md-4">
+@@ -49,7 +49,7 @@
+                     {{ pagerfanta(pager) }}
+                 </div>
+             </div>
+-        </div>
++        </turbo-frame>
+     </div>
+ </div>
+ {% endblock %}

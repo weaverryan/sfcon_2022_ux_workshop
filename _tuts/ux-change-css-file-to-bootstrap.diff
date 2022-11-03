@@ -1,0 +1,24 @@
+diff --git a/assets/controllers.json b/assets/controllers.json
+index a42cf39..4f5d954 100644
+--- a/assets/controllers.json
++++ b/assets/controllers.json
+@@ -5,7 +5,7 @@
+                 "enabled": true,
+                 "fetch": "eager",
+                 "autoimport": {
+-                    "tom-select/dist/css/tom-select.default.css": true
++                    "tom-select/dist/css/tom-select.default.css": false
+                 }
+             }
+         }
+diff --git a/assets/styles/app.css b/assets/styles/app.css
+index c445370..5f3ceb5 100644
+--- a/assets/styles/app.css
++++ b/assets/styles/app.css
+@@ -1,5 +1,6 @@
+ @import '~bootstrap';
+ @import '~@fontsource/roboto-condensed';
++@import '~tom-select/dist/css/tom-select.bootstrap5.css';
+ 
+ body {
+     background-color: #17242C;

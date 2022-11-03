@@ -1,0 +1,616 @@
+diff --git a/assets/controllers.json b/assets/controllers.json
+index a1c6e90..a42cf39 100644
+--- a/assets/controllers.json
++++ b/assets/controllers.json
+@@ -1,4 +1,14 @@
+ {
+-    "controllers": [],
++    "controllers": {
++        "@symfony/ux-autocomplete": {
++            "autocomplete": {
++                "enabled": true,
++                "fetch": "eager",
++                "autoimport": {
++                    "tom-select/dist/css/tom-select.default.css": true
++                }
++            }
++        }
++    },
+     "entrypoints": []
+ }
+diff --git a/composer.json b/composer.json
+index 2f204ba..223ef40 100644
+--- a/composer.json
++++ b/composer.json
+@@ -25,6 +25,7 @@
+         "symfony/runtime": "6.2.*",
+         "symfony/security-bundle": "6.2.*",
+         "symfony/twig-bundle": "6.2.*",
++        "symfony/ux-autocomplete": "^2.4",
+         "symfony/validator": "6.2.*",
+         "symfony/webpack-encore-bundle": "^1.16",
+         "symfony/yaml": "6.2.*",
+diff --git a/composer.lock b/composer.lock
+index d710a04..1188ab9 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "b8153fe21ee77c47681d10cc4ee14668",
++    "content-hash": "210f32289963242cec4a592604b8cdc4",
+     "packages": [
+         {
+             "name": "babdev/pagerfanta-bundle",
+@@ -5797,6 +5797,88 @@
+             ],
+             "time": "2022-09-13T06:25:34+00:00"
+         },
++        {
++            "name": "symfony/ux-autocomplete",
++            "version": "v2.4.0",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/ux-autocomplete.git",
++                "reference": "89b37ed23022dc1529845987ad59f6a203a13047"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/89b37ed23022dc1529845987ad59f6a203a13047",
++                "reference": "89b37ed23022dc1529845987ad59f6a203a13047",
++                "shasum": ""
++            },
++            "require": {
++                "php": ">=8.0",
++                "symfony/dependency-injection": "^5.4|^6.0",
++                "symfony/http-foundation": "^5.4|^6.0",
++                "symfony/http-kernel": "^5.4|^6.0",
++                "symfony/string": "^5.4|^6.0"
++            },
++            "require-dev": {
++                "doctrine/doctrine-bundle": "^2.0",
++                "doctrine/orm": "^2.7",
++                "mtdowling/jmespath.php": "2.6.x-dev",
++                "symfony/form": "^5.4|^6.0",
++                "symfony/framework-bundle": "^5.4|^6.0",
++                "symfony/maker-bundle": "^1.40",
++                "symfony/phpunit-bridge": "^5.4|^6.0",
++                "symfony/process": "^5.4|^6.0",
++                "symfony/security-bundle": "^5.4|^6.0",
++                "symfony/security-csrf": "^5.4|^6.0",
++                "symfony/twig-bundle": "^5.4|^6.0",
++                "zenstruck/browser": "^1.1",
++                "zenstruck/foundry": "^1.19"
++            },
++            "type": "symfony-bundle",
++            "extra": {
++                "thanks": {
++                    "name": "symfony/ux",
++                    "url": "https://github.com/symfony/ux"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\UX\\Autocomplete\\": "src/"
++                }
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "JavaScript Autocomplete functionality for Symfony",
++            "homepage": "https://symfony.com",
++            "keywords": [
++                "symfony-ux"
++            ],
++            "support": {
++                "source": "https://github.com/symfony/ux-autocomplete/tree/v2.4.0"
++            },
++            "funding": [
++                {
++                    "url": "https://symfony.com/sponsor",
++                    "type": "custom"
++                },
++                {
++                    "url": "https://github.com/fabpot",
++                    "type": "github"
++                },
++                {
++                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
++                    "type": "tidelift"
++                }
++            ],
++            "time": "2022-08-14T12:14:59+00:00"
++        },
+         {
+             "name": "symfony/validator",
+             "version": "v6.2.0-BETA2",
+diff --git a/config/bundles.php b/config/bundles.php
+index 108cc80..d917858 100644
+--- a/config/bundles.php
++++ b/config/bundles.php
+@@ -17,4 +17,5 @@ return [
+     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
+     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
+     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
++    Symfony\UX\Autocomplete\AutocompleteBundle::class => ['all' => true],
+ ];
+diff --git a/config/routes/ux_autocomplete.yaml b/config/routes/ux_autocomplete.yaml
+new file mode 100644
+index 0000000..d20a79e
+--- /dev/null
++++ b/config/routes/ux_autocomplete.yaml
+@@ -0,0 +1,3 @@
++ux_autocomplete:
++    resource: '@AutocompleteBundle/Resources/routes.php'
++    prefix: '/autocomplete'
+diff --git a/package-lock.json b/package-lock.json
+index 3761431..5b9f4ca 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -12,12 +12,14 @@
+                 "@hotwired/stimulus": "^3.0.0",
+                 "@symfony/stimulus-bridge": "^3.2.0",
+                 "@symfony/stimulus-testing": "^2.0.1",
++                "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
+                 "@symfony/webpack-encore": "^4.0.0",
+                 "@testing-library/dom": "^8.19.0",
+                 "@testing-library/user-event": "^14.4.3",
+                 "bootstrap": "^5.2.2",
+                 "core-js": "^3.23.0",
+                 "regenerator-runtime": "^0.13.9",
++                "tom-select": "^2.0.1",
+                 "webpack": "^5.74.0",
+                 "webpack-cli": "^4.10.0",
+                 "webpack-notifier": "^1.15.0"
+@@ -3231,6 +3233,21 @@
+                 "webpack": "^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0"
+             }
+         },
++        "node_modules/@orchidjs/sifter": {
++            "version": "1.0.3",
++            "resolved": "https://registry.npmjs.org/@orchidjs/sifter/-/sifter-1.0.3.tgz",
++            "integrity": "sha512-zCZbwKegHytfsPm8Amcfh7v/4vHqTAaOu6xFswBYcn8nznBOuseu6COB2ON7ez0tFV0mKL0nRNnCiZZA+lU9/g==",
++            "dev": true,
++            "dependencies": {
++                "@orchidjs/unicode-variants": "^1.0.4"
++            }
++        },
++        "node_modules/@orchidjs/unicode-variants": {
++            "version": "1.0.4",
++            "resolved": "https://registry.npmjs.org/@orchidjs/unicode-variants/-/unicode-variants-1.0.4.tgz",
++            "integrity": "sha512-NvVBRnZNE+dugiXERFsET1JlKZfM5lJDEpSMilKW4bToYJ7pxf0Zne78xyXB2ny2c2aHfJ6WLnz1AaTNHAmQeQ==",
++            "dev": true
++        },
+         "node_modules/@popperjs/core": {
+             "version": "2.11.6",
+             "resolved": "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz",
+@@ -3421,6 +3438,10 @@
+                 "node": ">=8"
+             }
+         },
++        "node_modules/@symfony/ux-autocomplete": {
++            "resolved": "vendor/symfony/ux-autocomplete/assets",
++            "link": true
++        },
+         "node_modules/@symfony/webpack-encore": {
+             "version": "4.1.1",
+             "resolved": "https://registry.npmjs.org/@symfony/webpack-encore/-/webpack-encore-4.1.1.tgz",
+@@ -7186,6 +7207,95 @@
+                 "bser": "2.1.1"
+             }
+         },
++        "node_modules/fetch-mock": {
++            "version": "9.11.0",
++            "resolved": "https://registry.npmjs.org/fetch-mock/-/fetch-mock-9.11.0.tgz",
++            "integrity": "sha512-PG1XUv+x7iag5p/iNHD4/jdpxL9FtVSqRMUQhPab4hVDt80T1MH5ehzVrL2IdXO9Q2iBggArFvPqjUbHFuI58Q==",
++            "dev": true,
++            "dependencies": {
++                "@babel/core": "^7.0.0",
++                "@babel/runtime": "^7.0.0",
++                "core-js": "^3.0.0",
++                "debug": "^4.1.1",
++                "glob-to-regexp": "^0.4.0",
++                "is-subset": "^0.1.1",
++                "lodash.isequal": "^4.5.0",
++                "path-to-regexp": "^2.2.1",
++                "querystring": "^0.2.0",
++                "whatwg-url": "^6.5.0"
++            },
++            "engines": {
++                "node": ">=4.0.0"
++            },
++            "funding": {
++                "type": "charity",
++                "url": "https://www.justgiving.com/refugee-support-europe"
++            },
++            "peerDependencies": {
++                "node-fetch": "*"
++            },
++            "peerDependenciesMeta": {
++                "node-fetch": {
++                    "optional": true
++                }
++            }
++        },
++        "node_modules/fetch-mock-jest": {
++            "version": "1.5.1",
++            "resolved": "https://registry.npmjs.org/fetch-mock-jest/-/fetch-mock-jest-1.5.1.tgz",
++            "integrity": "sha512-+utwzP8C+Pax1GSka3nFXILWMY3Er2L+s090FOgqVNrNCPp0fDqgXnAHAJf12PLHi0z4PhcTaZNTz8e7K3fjqQ==",
++            "dev": true,
++            "dependencies": {
++                "fetch-mock": "^9.11.0"
++            },
++            "engines": {
++                "node": ">=8.0.0"
++            },
++            "funding": {
++                "type": "charity",
++                "url": "https://www.justgiving.com/refugee-support-europe"
++            },
++            "peerDependencies": {
++                "node-fetch": "*"
++            },
++            "peerDependenciesMeta": {
++                "node-fetch": {
++                    "optional": true
++                }
++            }
++        },
++        "node_modules/fetch-mock/node_modules/path-to-regexp": {
++            "version": "2.4.0",
++            "resolved": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-2.4.0.tgz",
++            "integrity": "sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==",
++            "dev": true
++        },
++        "node_modules/fetch-mock/node_modules/tr46": {
++            "version": "1.0.1",
++            "resolved": "https://registry.npmjs.org/tr46/-/tr46-1.0.1.tgz",
++            "integrity": "sha512-dTpowEjclQ7Kgx5SdBkqRzVhERQXov8/l9Ft9dVM9fmg0W0KQSVaXX9T4i6twCPNtYiZM53lpSSUAwJbFPOHxA==",
++            "dev": true,
++            "dependencies": {
++                "punycode": "^2.1.0"
++            }
++        },
++        "node_modules/fetch-mock/node_modules/webidl-conversions": {
++            "version": "4.0.2",
++            "resolved": "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-4.0.2.tgz",
++            "integrity": "sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==",
++            "dev": true
++        },
++        "node_modules/fetch-mock/node_modules/whatwg-url": {
++            "version": "6.5.0",
++            "resolved": "https://registry.npmjs.org/whatwg-url/-/whatwg-url-6.5.0.tgz",
++            "integrity": "sha512-rhRZRqx/TLJQWUpQ6bmrt2UV4f0HCQ463yQuONJqC6fO2VoEb1pTYddbe59SkYq87aoM5A3bdhMZiUiVws+fzQ==",
++            "dev": true,
++            "dependencies": {
++                "lodash.sortby": "^4.7.0",
++                "tr46": "^1.0.1",
++                "webidl-conversions": "^4.0.2"
++            }
++        },
+         "node_modules/fill-range": {
+             "version": "7.0.1",
+             "resolved": "https://registry.npmjs.org/fill-range/-/fill-range-7.0.1.tgz",
+@@ -8354,6 +8464,12 @@
+                 "url": "https://github.com/sponsors/ljharb"
+             }
+         },
++        "node_modules/is-subset": {
++            "version": "0.1.1",
++            "resolved": "https://registry.npmjs.org/is-subset/-/is-subset-0.1.1.tgz",
++            "integrity": "sha512-6Ybun0IkarhmEqxXCNw/C0bna6Zb/TkfUX9UbwJtK6ObwAVCxmAP308WWTHviM/zAqXk05cdhYsUsZeGQh99iw==",
++            "dev": true
++        },
+         "node_modules/is-symbol": {
+             "version": "1.0.4",
+             "resolved": "https://registry.npmjs.org/is-symbol/-/is-symbol-1.0.4.tgz",
+@@ -11749,12 +11865,24 @@
+             "integrity": "sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==",
+             "dev": true
+         },
++        "node_modules/lodash.isequal": {
++            "version": "4.5.0",
++            "resolved": "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz",
++            "integrity": "sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==",
++            "dev": true
++        },
+         "node_modules/lodash.memoize": {
+             "version": "4.1.2",
+             "resolved": "https://registry.npmjs.org/lodash.memoize/-/lodash.memoize-4.1.2.tgz",
+             "integrity": "sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==",
+             "dev": true
+         },
++        "node_modules/lodash.sortby": {
++            "version": "4.7.0",
++            "resolved": "https://registry.npmjs.org/lodash.sortby/-/lodash.sortby-4.7.0.tgz",
++            "integrity": "sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==",
++            "dev": true
++        },
+         "node_modules/lodash.uniq": {
+             "version": "4.5.0",
+             "resolved": "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz",
+@@ -13539,6 +13667,16 @@
+                 "url": "https://github.com/sponsors/ljharb"
+             }
+         },
++        "node_modules/querystring": {
++            "version": "0.2.1",
++            "resolved": "https://registry.npmjs.org/querystring/-/querystring-0.2.1.tgz",
++            "integrity": "sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==",
++            "deprecated": "The querystring API is considered Legacy. new code should use the URLSearchParams API instead.",
++            "dev": true,
++            "engines": {
++                "node": ">=0.4.x"
++            }
++        },
+         "node_modules/querystringify": {
+             "version": "2.2.0",
+             "resolved": "https://registry.npmjs.org/querystringify/-/querystringify-2.2.0.tgz",
+@@ -15567,6 +15705,23 @@
+                 "node": ">=0.6"
+             }
+         },
++        "node_modules/tom-select": {
++            "version": "2.2.2",
++            "resolved": "https://registry.npmjs.org/tom-select/-/tom-select-2.2.2.tgz",
++            "integrity": "sha512-igGah1yY6yhrnN2h/Ky8I5muw/nE/YQxIsEZoYu5qaA4bsRibvKto3s8QZZosKpOd0uO8fNYhRfAwgHB4IAYew==",
++            "dev": true,
++            "dependencies": {
++                "@orchidjs/sifter": "^1.0.3",
++                "@orchidjs/unicode-variants": "^1.0.4"
++            },
++            "engines": {
++                "node": "*"
++            },
++            "funding": {
++                "type": "opencollective",
++                "url": "https://opencollective.com/tom-select"
++            }
++        },
+         "node_modules/tough-cookie": {
+             "version": "4.1.2",
+             "resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-4.1.2.tgz",
+@@ -16617,6 +16772,20 @@
+             "engines": {
+                 "node": ">=6"
+             }
++        },
++        "vendor/symfony/ux-autocomplete/assets": {
++            "version": "1.0.0",
++            "dev": true,
++            "license": "MIT",
++            "devDependencies": {
++                "@hotwired/stimulus": "^3.0.0",
++                "fetch-mock-jest": "^1.5.1",
++                "tom-select": "^2.0.1"
++            },
++            "peerDependencies": {
++                "@hotwired/stimulus": "^3.0.0",
++                "tom-select": "^2.0.1"
++            }
+         }
+     },
+     "dependencies": {
+@@ -19002,6 +19171,21 @@
+                 "string-width": "^4.2.3"
+             }
+         },
++        "@orchidjs/sifter": {
++            "version": "1.0.3",
++            "resolved": "https://registry.npmjs.org/@orchidjs/sifter/-/sifter-1.0.3.tgz",
++            "integrity": "sha512-zCZbwKegHytfsPm8Amcfh7v/4vHqTAaOu6xFswBYcn8nznBOuseu6COB2ON7ez0tFV0mKL0nRNnCiZZA+lU9/g==",
++            "dev": true,
++            "requires": {
++                "@orchidjs/unicode-variants": "^1.0.4"
++            }
++        },
++        "@orchidjs/unicode-variants": {
++            "version": "1.0.4",
++            "resolved": "https://registry.npmjs.org/@orchidjs/unicode-variants/-/unicode-variants-1.0.4.tgz",
++            "integrity": "sha512-NvVBRnZNE+dugiXERFsET1JlKZfM5lJDEpSMilKW4bToYJ7pxf0Zne78xyXB2ny2c2aHfJ6WLnz1AaTNHAmQeQ==",
++            "dev": true
++        },
+         "@popperjs/core": {
+             "version": "2.11.6",
+             "resolved": "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz",
+@@ -19147,6 +19331,14 @@
+                 }
+             }
+         },
++        "@symfony/ux-autocomplete": {
++            "version": "file:vendor/symfony/ux-autocomplete/assets",
++            "requires": {
++                "@hotwired/stimulus": "^3.0.0",
++                "fetch-mock-jest": "^1.5.1",
++                "tom-select": "^2.0.1"
++            }
++        },
+         "@symfony/webpack-encore": {
+             "version": "4.1.1",
+             "resolved": "https://registry.npmjs.org/@symfony/webpack-encore/-/webpack-encore-4.1.1.tgz",
+@@ -22023,6 +22215,67 @@
+                 "bser": "2.1.1"
+             }
+         },
++        "fetch-mock": {
++            "version": "9.11.0",
++            "resolved": "https://registry.npmjs.org/fetch-mock/-/fetch-mock-9.11.0.tgz",
++            "integrity": "sha512-PG1XUv+x7iag5p/iNHD4/jdpxL9FtVSqRMUQhPab4hVDt80T1MH5ehzVrL2IdXO9Q2iBggArFvPqjUbHFuI58Q==",
++            "dev": true,
++            "requires": {
++                "@babel/core": "^7.0.0",
++                "@babel/runtime": "^7.0.0",
++                "core-js": "^3.0.0",
++                "debug": "^4.1.1",
++                "glob-to-regexp": "^0.4.0",
++                "is-subset": "^0.1.1",
++                "lodash.isequal": "^4.5.0",
++                "path-to-regexp": "^2.2.1",
++                "querystring": "^0.2.0",
++                "whatwg-url": "^6.5.0"
++            },
++            "dependencies": {
++                "path-to-regexp": {
++                    "version": "2.4.0",
++                    "resolved": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-2.4.0.tgz",
++                    "integrity": "sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==",
++                    "dev": true
++                },
++                "tr46": {
++                    "version": "1.0.1",
++                    "resolved": "https://registry.npmjs.org/tr46/-/tr46-1.0.1.tgz",
++                    "integrity": "sha512-dTpowEjclQ7Kgx5SdBkqRzVhERQXov8/l9Ft9dVM9fmg0W0KQSVaXX9T4i6twCPNtYiZM53lpSSUAwJbFPOHxA==",
++                    "dev": true,
++                    "requires": {
++                        "punycode": "^2.1.0"
++                    }
++                },
++                "webidl-conversions": {
++                    "version": "4.0.2",
++                    "resolved": "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-4.0.2.tgz",
++                    "integrity": "sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==",
++                    "dev": true
++                },
++                "whatwg-url": {
++                    "version": "6.5.0",
++                    "resolved": "https://registry.npmjs.org/whatwg-url/-/whatwg-url-6.5.0.tgz",
++                    "integrity": "sha512-rhRZRqx/TLJQWUpQ6bmrt2UV4f0HCQ463yQuONJqC6fO2VoEb1pTYddbe59SkYq87aoM5A3bdhMZiUiVws+fzQ==",
++                    "dev": true,
++                    "requires": {
++                        "lodash.sortby": "^4.7.0",
++                        "tr46": "^1.0.1",
++                        "webidl-conversions": "^4.0.2"
++                    }
++                }
++            }
++        },
++        "fetch-mock-jest": {
++            "version": "1.5.1",
++            "resolved": "https://registry.npmjs.org/fetch-mock-jest/-/fetch-mock-jest-1.5.1.tgz",
++            "integrity": "sha512-+utwzP8C+Pax1GSka3nFXILWMY3Er2L+s090FOgqVNrNCPp0fDqgXnAHAJf12PLHi0z4PhcTaZNTz8e7K3fjqQ==",
++            "dev": true,
++            "requires": {
++                "fetch-mock": "^9.11.0"
++            }
++        },
+         "fill-range": {
+             "version": "7.0.1",
+             "resolved": "https://registry.npmjs.org/fill-range/-/fill-range-7.0.1.tgz",
+@@ -22880,6 +23133,12 @@
+                 "has-tostringtag": "^1.0.0"
+             }
+         },
++        "is-subset": {
++            "version": "0.1.1",
++            "resolved": "https://registry.npmjs.org/is-subset/-/is-subset-0.1.1.tgz",
++            "integrity": "sha512-6Ybun0IkarhmEqxXCNw/C0bna6Zb/TkfUX9UbwJtK6ObwAVCxmAP308WWTHviM/zAqXk05cdhYsUsZeGQh99iw==",
++            "dev": true
++        },
+         "is-symbol": {
+             "version": "1.0.4",
+             "resolved": "https://registry.npmjs.org/is-symbol/-/is-symbol-1.0.4.tgz",
+@@ -25489,12 +25748,24 @@
+             "integrity": "sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==",
+             "dev": true
+         },
++        "lodash.isequal": {
++            "version": "4.5.0",
++            "resolved": "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz",
++            "integrity": "sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==",
++            "dev": true
++        },
+         "lodash.memoize": {
+             "version": "4.1.2",
+             "resolved": "https://registry.npmjs.org/lodash.memoize/-/lodash.memoize-4.1.2.tgz",
+             "integrity": "sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==",
+             "dev": true
+         },
++        "lodash.sortby": {
++            "version": "4.7.0",
++            "resolved": "https://registry.npmjs.org/lodash.sortby/-/lodash.sortby-4.7.0.tgz",
++            "integrity": "sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==",
++            "dev": true
++        },
+         "lodash.uniq": {
+             "version": "4.5.0",
+             "resolved": "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz",
+@@ -26777,6 +27048,12 @@
+                 "side-channel": "^1.0.4"
+             }
+         },
++        "querystring": {
++            "version": "0.2.1",
++            "resolved": "https://registry.npmjs.org/querystring/-/querystring-0.2.1.tgz",
++            "integrity": "sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==",
++            "dev": true
++        },
+         "querystringify": {
+             "version": "2.2.0",
+             "resolved": "https://registry.npmjs.org/querystringify/-/querystringify-2.2.0.tgz",
+@@ -28390,6 +28667,16 @@
+             "integrity": "sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==",
+             "dev": true
+         },
++        "tom-select": {
++            "version": "2.2.2",
++            "resolved": "https://registry.npmjs.org/tom-select/-/tom-select-2.2.2.tgz",
++            "integrity": "sha512-igGah1yY6yhrnN2h/Ky8I5muw/nE/YQxIsEZoYu5qaA4bsRibvKto3s8QZZosKpOd0uO8fNYhRfAwgHB4IAYew==",
++            "dev": true,
++            "requires": {
++                "@orchidjs/sifter": "^1.0.3",
++                "@orchidjs/unicode-variants": "^1.0.4"
++            }
++        },
+         "tough-cookie": {
+             "version": "4.1.2",
+             "resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-4.1.2.tgz",
+diff --git a/package.json b/package.json
+index 4961a78..056057e 100644
+--- a/package.json
++++ b/package.json
+@@ -6,12 +6,14 @@
+         "@hotwired/stimulus": "^3.0.0",
+         "@symfony/stimulus-bridge": "^3.2.0",
+         "@symfony/stimulus-testing": "^2.0.1",
++        "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
+         "@symfony/webpack-encore": "^4.0.0",
+         "@testing-library/dom": "^8.19.0",
+         "@testing-library/user-event": "^14.4.3",
+         "bootstrap": "^5.2.2",
+         "core-js": "^3.23.0",
+         "regenerator-runtime": "^0.13.9",
++        "tom-select": "^2.0.1",
+         "webpack": "^5.74.0",
+         "webpack-cli": "^4.10.0",
+         "webpack-notifier": "^1.15.0"
+diff --git a/symfony.lock b/symfony.lock
+index e96fad7..25fdb8e 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -261,6 +261,18 @@
+             "templates/base.html.twig"
+         ]
+     },
++    "symfony/ux-autocomplete": {
++        "version": "2.4",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "main",
++            "version": "2.2",
++            "ref": "f8fa49e4547904ab278c100564ae1102df774243"
++        },
++        "files": [
++            "config/routes/ux_autocomplete.yaml"
++        ]
++    },
+     "symfony/validator": {
+         "version": "6.2",
+         "recipe": {
