@@ -12,6 +12,7 @@
         {{ form_row(form.length) }}
 
         <button type="submit" class="btn btn-primary" formnovalidate>Add <span class="fa fa-plus"></span></button>
+        <a href="{{ path('app_mix_edit', { slug: mix.slug }) }}">cancel</a>
     {{ form_end(form) }}
 </div>
 {% endblock %}
