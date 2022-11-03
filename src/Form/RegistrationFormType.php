@@ -23,8 +23,9 @@ class RegistrationFormType extends AbstractType
             ->add('favoriteTrack', EntityType::class, [
                 'class' => Track::class,
                 'placeholder' => 'Choose a song',
-                // just a fake field for display
-                'mapped' => false,
+                'choice_label' => function(Track $track) {
+                    return sprintf('%s (by %s)', $track->getSongTitle(), $track->getArtistName());
+                },
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

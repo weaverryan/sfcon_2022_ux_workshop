@@ -34,6 +34,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\ManyToOne]
+    private ?Track $favoriteTrack = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,5 +105,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFavoriteTrack(): ?Track
+    {
+        return $this->favoriteTrack;
+    }
+
+    public function setFavoriteTrack(?Track $favoriteTrack): self
+    {
+        $this->favoriteTrack = $favoriteTrack;
+
+        return $this;
     }
 }
