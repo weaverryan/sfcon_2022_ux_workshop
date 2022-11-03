@@ -13,14 +13,14 @@ index 3747359..e3bed0e 100644
      }
  }
 diff --git a/templates/mix/show.html.twig b/templates/mix/show.html.twig
-index 200f162..6bd03e7 100644
+index 9ac4a45..c7eabbb 100644
 --- a/templates/mix/show.html.twig
 +++ b/templates/mix/show.html.twig
-@@ -18,6 +18,7 @@
+@@ -17,6 +17,7 @@
+                     <span>{{ mix.votes }}</span> votes
                      <button
-                         type="submit"
                          class="btn btn-outline-primary"
 +                        {{ stimulus_action('vote', 'upVote') }}
                      ><span class="fa fa-thumbs-up"></span></button>
                      <button
-                         type="submit"
+                         class="btn btn-outline-primary"

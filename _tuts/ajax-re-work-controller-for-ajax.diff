@@ -1,0 +1,38 @@
+diff --git a/src/Controller/MixController.php b/src/Controller/MixController.php
+index 8e509d8..c1d7b69 100644
+--- a/src/Controller/MixController.php
++++ b/src/Controller/MixController.php
+@@ -57,7 +57,8 @@ class MixController extends AbstractController
+     #[Route('/mix/{id}/vote', name: 'app_mix_vote', methods: ['POST'])]
+     public function vote(VinylMix $mix, Request $request, EntityManagerInterface $entityManager): Response
+     {
+-        $direction = $request->request->get('direction', 'up');
++        $data = $request->toArray();
++        $direction = $data['direction'] ?? 'up';
+         if ($direction === 'up') {
+             $mix->upVote();
+         } else {
+@@ -65,10 +66,9 @@ class MixController extends AbstractController
+         }
+ 
+         $entityManager->flush();
+-        $this->addFlash('success', 'Vote counted!');
+ 
+-        return $this->redirectToRoute('app_mix_show', [
+-            'slug' => $mix->getSlug(),
++        return $this->render('mix/_voteSuccess.html.twig', [
++            'mix' => $mix,
+         ]);
+     }
+ }
+diff --git a/templates/mix/_voteSuccess.html.twig b/templates/mix/_voteSuccess.html.twig
+new file mode 100644
+index 0000000..0ac80e3
+--- /dev/null
++++ b/templates/mix/_voteSuccess.html.twig
+@@ -0,0 +1,5 @@
++<span>{{ mix.votes }}</span> votes
++
++<span class="alert alert-success p-1">
++    <span class="fa fa-check"></span> Thanks!
++</span>

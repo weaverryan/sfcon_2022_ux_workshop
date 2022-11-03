@@ -1,0 +1,491 @@
+diff --git a/assets/test/controllers/vote-controller.test.js b/assets/test/controllers/vote-controller.test.js
+index 3fbcb2a..adbe740 100644
+--- a/assets/test/controllers/vote-controller.test.js
++++ b/assets/test/controllers/vote-controller.test.js
+@@ -1,6 +1,8 @@
+ import { Application } from '@hotwired/stimulus';
+ import { clearDOM, mountDOM } from '@symfony/stimulus-testing';
+ import VoteController from '../../controllers/vote-controller';
++import userEvent from '@testing-library/user-event';
++import { getByText } from '@testing-library/dom';
+ 
+ const startStimulus = () => {
+     const application = Application.start();
+@@ -28,7 +30,8 @@ describe('VoteController', () => {
+ 
+         startStimulus();
+ 
+-        // Write a test here ...
++        await userEvent.click(getByText(container, 'Up'));
++        expect(container.textContent).toContain('11 votes');
+     });
+ 
+     // You can create other tests here
+diff --git a/package-lock.json b/package-lock.json
+index d9e20e1..3761431 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -13,6 +13,8 @@
+                 "@symfony/stimulus-bridge": "^3.2.0",
+                 "@symfony/stimulus-testing": "^2.0.1",
+                 "@symfony/webpack-encore": "^4.0.0",
++                "@testing-library/dom": "^8.19.0",
++                "@testing-library/user-event": "^14.4.3",
+                 "bootstrap": "^5.2.2",
+                 "core-js": "^3.23.0",
+                 "regenerator-runtime": "^0.13.9",
+@@ -3301,6 +3303,124 @@
+                 "node": "^10.13.0 || >=12.0.0"
+             }
+         },
++        "node_modules/@symfony/stimulus-testing/node_modules/@testing-library/dom": {
++            "version": "7.31.2",
++            "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-7.31.2.tgz",
++            "integrity": "sha512-3UqjCpey6HiTZT92vODYLPxTBWlM8ZOOjr3LX5F37/VRipW2M1kX6I/Cm4VXzteZqfGfagg8yXywpcOgQBlNsQ==",
++            "dev": true,
++            "dependencies": {
++                "@babel/code-frame": "^7.10.4",
++                "@babel/runtime": "^7.12.5",
++                "@types/aria-query": "^4.2.0",
++                "aria-query": "^4.2.2",
++                "chalk": "^4.1.0",
++                "dom-accessibility-api": "^0.5.6",
++                "lz-string": "^1.4.4",
++                "pretty-format": "^26.6.2"
++            },
++            "engines": {
++                "node": ">=10"
++            }
++        },
++        "node_modules/@symfony/stimulus-testing/node_modules/@testing-library/user-event": {
++            "version": "12.8.3",
++            "resolved": "https://registry.npmjs.org/@testing-library/user-event/-/user-event-12.8.3.tgz",
++            "integrity": "sha512-IR0iWbFkgd56Bu5ZI/ej8yQwrkCv8Qydx6RzwbKz9faXazR/+5tvYKsZQgyXJiwgpcva127YO6JcWy7YlCfofQ==",
++            "dev": true,
++            "dependencies": {
++                "@babel/runtime": "^7.12.5"
++            },
++            "engines": {
++                "node": ">=10",
++                "npm": ">=6"
++            },
++            "peerDependencies": {
++                "@testing-library/dom": ">=7.21.4"
++            }
++        },
++        "node_modules/@symfony/stimulus-testing/node_modules/ansi-styles": {
++            "version": "4.3.0",
++            "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",
++            "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==",
++            "dev": true,
++            "dependencies": {
++                "color-convert": "^2.0.1"
++            },
++            "engines": {
++                "node": ">=8"
++            },
++            "funding": {
++                "url": "https://github.com/chalk/ansi-styles?sponsor=1"
++            }
++        },
++        "node_modules/@symfony/stimulus-testing/node_modules/aria-query": {
++            "version": "4.2.2",
++            "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-4.2.2.tgz",
++            "integrity": "sha512-o/HelwhuKpTj/frsOsbNLNgnNGVIFsVP/SW2BSF14gVl7kAfMOJ6/8wUAUvG1R1NHKrfG+2sHZTu0yauT1qBrA==",
++            "dev": true,
++            "dependencies": {
++                "@babel/runtime": "^7.10.2",
++                "@babel/runtime-corejs3": "^7.10.2"
++            },
++            "engines": {
++                "node": ">=6.0"
++            }
++        },
++        "node_modules/@symfony/stimulus-testing/node_modules/chalk": {
++            "version": "4.1.2",
++            "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
++            "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
++            "dev": true,
++            "dependencies": {
++                "ansi-styles": "^4.1.0",
++                "supports-color": "^7.1.0"
++            },
++            "engines": {
++                "node": ">=10"
++            },
++            "funding": {
++                "url": "https://github.com/chalk/chalk?sponsor=1"
++            }
++        },
++        "node_modules/@symfony/stimulus-testing/node_modules/color-convert": {
++            "version": "2.0.1",
++            "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
++            "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",
++            "dev": true,
++            "dependencies": {
++                "color-name": "~1.1.4"
++            },
++            "engines": {
++                "node": ">=7.0.0"
++            }
++        },
++        "node_modules/@symfony/stimulus-testing/node_modules/color-name": {
++            "version": "1.1.4",
++            "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
++            "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
++            "dev": true
++        },
++        "node_modules/@symfony/stimulus-testing/node_modules/has-flag": {
++            "version": "4.0.0",
++            "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-4.0.0.tgz",
++            "integrity": "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==",
++            "dev": true,
++            "engines": {
++                "node": ">=8"
++            }
++        },
++        "node_modules/@symfony/stimulus-testing/node_modules/supports-color": {
++            "version": "7.2.0",
++            "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz",
++            "integrity": "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==",
++            "dev": true,
++            "dependencies": {
++                "has-flag": "^4.0.0"
++            },
++            "engines": {
++                "node": ">=8"
++            }
++        },
+         "node_modules/@symfony/webpack-encore": {
+             "version": "4.1.1",
+             "resolved": "https://registry.npmjs.org/@symfony/webpack-encore/-/webpack-encore-4.1.1.tgz",
+@@ -3549,22 +3669,22 @@
+             }
+         },
+         "node_modules/@testing-library/dom": {
+-            "version": "7.31.2",
+-            "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-7.31.2.tgz",
+-            "integrity": "sha512-3UqjCpey6HiTZT92vODYLPxTBWlM8ZOOjr3LX5F37/VRipW2M1kX6I/Cm4VXzteZqfGfagg8yXywpcOgQBlNsQ==",
++            "version": "8.19.0",
++            "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-8.19.0.tgz",
++            "integrity": "sha512-6YWYPPpxG3e/xOo6HIWwB/58HukkwIVTOaZ0VwdMVjhRUX/01E4FtQbck9GazOOj7MXHc5RBzMrU86iBJHbI+A==",
+             "dev": true,
+             "dependencies": {
+                 "@babel/code-frame": "^7.10.4",
+                 "@babel/runtime": "^7.12.5",
+                 "@types/aria-query": "^4.2.0",
+-                "aria-query": "^4.2.2",
++                "aria-query": "^5.0.0",
+                 "chalk": "^4.1.0",
+-                "dom-accessibility-api": "^0.5.6",
++                "dom-accessibility-api": "^0.5.9",
+                 "lz-string": "^1.4.4",
+-                "pretty-format": "^26.6.2"
++                "pretty-format": "^27.0.2"
+             },
+             "engines": {
+-                "node": ">=10"
++                "node": ">=12"
+             }
+         },
+         "node_modules/@testing-library/dom/node_modules/ansi-styles": {
+@@ -3625,6 +3745,32 @@
+                 "node": ">=8"
+             }
+         },
++        "node_modules/@testing-library/dom/node_modules/pretty-format": {
++            "version": "27.5.1",
++            "resolved": "https://registry.npmjs.org/pretty-format/-/pretty-format-27.5.1.tgz",
++            "integrity": "sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==",
++            "dev": true,
++            "dependencies": {
++                "ansi-regex": "^5.0.1",
++                "ansi-styles": "^5.0.0",
++                "react-is": "^17.0.1"
++            },
++            "engines": {
++                "node": "^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0"
++            }
++        },
++        "node_modules/@testing-library/dom/node_modules/pretty-format/node_modules/ansi-styles": {
++            "version": "5.2.0",
++            "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
++            "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
++            "dev": true,
++            "engines": {
++                "node": ">=10"
++            },
++            "funding": {
++                "url": "https://github.com/chalk/ansi-styles?sponsor=1"
++            }
++        },
+         "node_modules/@testing-library/dom/node_modules/supports-color": {
+             "version": "7.2.0",
+             "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz",
+@@ -3674,15 +3820,6 @@
+                 "url": "https://github.com/chalk/ansi-styles?sponsor=1"
+             }
+         },
+-        "node_modules/@testing-library/jest-dom/node_modules/aria-query": {
+-            "version": "5.1.3",
+-            "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.1.3.tgz",
+-            "integrity": "sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==",
+-            "dev": true,
+-            "dependencies": {
+-                "deep-equal": "^2.0.5"
+-            }
+-        },
+         "node_modules/@testing-library/jest-dom/node_modules/chalk": {
+             "version": "3.0.0",
+             "resolved": "https://registry.npmjs.org/chalk/-/chalk-3.0.0.tgz",
+@@ -3736,15 +3873,12 @@
+             }
+         },
+         "node_modules/@testing-library/user-event": {
+-            "version": "12.8.3",
+-            "resolved": "https://registry.npmjs.org/@testing-library/user-event/-/user-event-12.8.3.tgz",
+-            "integrity": "sha512-IR0iWbFkgd56Bu5ZI/ej8yQwrkCv8Qydx6RzwbKz9faXazR/+5tvYKsZQgyXJiwgpcva127YO6JcWy7YlCfofQ==",
++            "version": "14.4.3",
++            "resolved": "https://registry.npmjs.org/@testing-library/user-event/-/user-event-14.4.3.tgz",
++            "integrity": "sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==",
+             "dev": true,
+-            "dependencies": {
+-                "@babel/runtime": "^7.12.5"
+-            },
+             "engines": {
+-                "node": ">=10",
++                "node": ">=12",
+                 "npm": ">=6"
+             },
+             "peerDependencies": {
+@@ -4549,16 +4683,12 @@
+             }
+         },
+         "node_modules/aria-query": {
+-            "version": "4.2.2",
+-            "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-4.2.2.tgz",
+-            "integrity": "sha512-o/HelwhuKpTj/frsOsbNLNgnNGVIFsVP/SW2BSF14gVl7kAfMOJ6/8wUAUvG1R1NHKrfG+2sHZTu0yauT1qBrA==",
++            "version": "5.1.3",
++            "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.1.3.tgz",
++            "integrity": "sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==",
+             "dev": true,
+             "dependencies": {
+-                "@babel/runtime": "^7.10.2",
+-                "@babel/runtime-corejs3": "^7.10.2"
+-            },
+-            "engines": {
+-                "node": ">=6.0"
++                "deep-equal": "^2.0.5"
+             }
+         },
+         "node_modules/arr-diff": {
+@@ -18929,6 +19059,92 @@
+                 "jest": "^26.6.3",
+                 "mutationobserver-shim": "^0.3.7",
+                 "regenerator-runtime": "^0.13.7"
++            },
++            "dependencies": {
++                "@testing-library/dom": {
++                    "version": "7.31.2",
++                    "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-7.31.2.tgz",
++                    "integrity": "sha512-3UqjCpey6HiTZT92vODYLPxTBWlM8ZOOjr3LX5F37/VRipW2M1kX6I/Cm4VXzteZqfGfagg8yXywpcOgQBlNsQ==",
++                    "dev": true,
++                    "requires": {
++                        "@babel/code-frame": "^7.10.4",
++                        "@babel/runtime": "^7.12.5",
++                        "@types/aria-query": "^4.2.0",
++                        "aria-query": "^4.2.2",
++                        "chalk": "^4.1.0",
++                        "dom-accessibility-api": "^0.5.6",
++                        "lz-string": "^1.4.4",
++                        "pretty-format": "^26.6.2"
++                    }
++                },
++                "@testing-library/user-event": {
++                    "version": "12.8.3",
++                    "resolved": "https://registry.npmjs.org/@testing-library/user-event/-/user-event-12.8.3.tgz",
++                    "integrity": "sha512-IR0iWbFkgd56Bu5ZI/ej8yQwrkCv8Qydx6RzwbKz9faXazR/+5tvYKsZQgyXJiwgpcva127YO6JcWy7YlCfofQ==",
++                    "dev": true,
++                    "requires": {
++                        "@babel/runtime": "^7.12.5"
++                    }
++                },
++                "ansi-styles": {
++                    "version": "4.3.0",
++                    "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",
++                    "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==",
++                    "dev": true,
++                    "requires": {
++                        "color-convert": "^2.0.1"
++                    }
++                },
++                "aria-query": {
++                    "version": "4.2.2",
++                    "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-4.2.2.tgz",
++                    "integrity": "sha512-o/HelwhuKpTj/frsOsbNLNgnNGVIFsVP/SW2BSF14gVl7kAfMOJ6/8wUAUvG1R1NHKrfG+2sHZTu0yauT1qBrA==",
++                    "dev": true,
++                    "requires": {
++                        "@babel/runtime": "^7.10.2",
++                        "@babel/runtime-corejs3": "^7.10.2"
++                    }
++                },
++                "chalk": {
++                    "version": "4.1.2",
++                    "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
++                    "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
++                    "dev": true,
++                    "requires": {
++                        "ansi-styles": "^4.1.0",
++                        "supports-color": "^7.1.0"
++                    }
++                },
++                "color-convert": {
++                    "version": "2.0.1",
++                    "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
++                    "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",
++                    "dev": true,
++                    "requires": {
++                        "color-name": "~1.1.4"
++                    }
++                },
++                "color-name": {
++                    "version": "1.1.4",
++                    "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
++                    "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
++                    "dev": true
++                },
++                "has-flag": {
++                    "version": "4.0.0",
++                    "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-4.0.0.tgz",
++                    "integrity": "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==",
++                    "dev": true
++                },
++                "supports-color": {
++                    "version": "7.2.0",
++                    "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz",
++                    "integrity": "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==",
++                    "dev": true,
++                    "requires": {
++                        "has-flag": "^4.0.0"
++                    }
++                }
+             }
+         },
+         "@symfony/webpack-encore": {
+@@ -19020,19 +19236,19 @@
+             }
+         },
+         "@testing-library/dom": {
+-            "version": "7.31.2",
+-            "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-7.31.2.tgz",
+-            "integrity": "sha512-3UqjCpey6HiTZT92vODYLPxTBWlM8ZOOjr3LX5F37/VRipW2M1kX6I/Cm4VXzteZqfGfagg8yXywpcOgQBlNsQ==",
++            "version": "8.19.0",
++            "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-8.19.0.tgz",
++            "integrity": "sha512-6YWYPPpxG3e/xOo6HIWwB/58HukkwIVTOaZ0VwdMVjhRUX/01E4FtQbck9GazOOj7MXHc5RBzMrU86iBJHbI+A==",
+             "dev": true,
+             "requires": {
+                 "@babel/code-frame": "^7.10.4",
+                 "@babel/runtime": "^7.12.5",
+                 "@types/aria-query": "^4.2.0",
+-                "aria-query": "^4.2.2",
++                "aria-query": "^5.0.0",
+                 "chalk": "^4.1.0",
+-                "dom-accessibility-api": "^0.5.6",
++                "dom-accessibility-api": "^0.5.9",
+                 "lz-string": "^1.4.4",
+-                "pretty-format": "^26.6.2"
++                "pretty-format": "^27.0.2"
+             },
+             "dependencies": {
+                 "ansi-styles": {
+@@ -19075,6 +19291,25 @@
+                     "integrity": "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==",
+                     "dev": true
+                 },
++                "pretty-format": {
++                    "version": "27.5.1",
++                    "resolved": "https://registry.npmjs.org/pretty-format/-/pretty-format-27.5.1.tgz",
++                    "integrity": "sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==",
++                    "dev": true,
++                    "requires": {
++                        "ansi-regex": "^5.0.1",
++                        "ansi-styles": "^5.0.0",
++                        "react-is": "^17.0.1"
++                    },
++                    "dependencies": {
++                        "ansi-styles": {
++                            "version": "5.2.0",
++                            "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
++                            "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
++                            "dev": true
++                        }
++                    }
++                },
+                 "supports-color": {
+                     "version": "7.2.0",
+                     "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz",
+@@ -19112,15 +19347,6 @@
+                         "color-convert": "^2.0.1"
+                     }
+                 },
+-                "aria-query": {
+-                    "version": "5.1.3",
+-                    "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.1.3.tgz",
+-                    "integrity": "sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==",
+-                    "dev": true,
+-                    "requires": {
+-                        "deep-equal": "^2.0.5"
+-                    }
+-                },
+                 "chalk": {
+                     "version": "3.0.0",
+                     "resolved": "https://registry.npmjs.org/chalk/-/chalk-3.0.0.tgz",
+@@ -19164,13 +19390,11 @@
+             }
+         },
+         "@testing-library/user-event": {
+-            "version": "12.8.3",
+-            "resolved": "https://registry.npmjs.org/@testing-library/user-event/-/user-event-12.8.3.tgz",
+-            "integrity": "sha512-IR0iWbFkgd56Bu5ZI/ej8yQwrkCv8Qydx6RzwbKz9faXazR/+5tvYKsZQgyXJiwgpcva127YO6JcWy7YlCfofQ==",
++            "version": "14.4.3",
++            "resolved": "https://registry.npmjs.org/@testing-library/user-event/-/user-event-14.4.3.tgz",
++            "integrity": "sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==",
+             "dev": true,
+-            "requires": {
+-                "@babel/runtime": "^7.12.5"
+-            }
++            "requires": {}
+         },
+         "@tootallnate/once": {
+             "version": "1.1.2",
+@@ -19883,13 +20107,12 @@
+             }
+         },
+         "aria-query": {
+-            "version": "4.2.2",
+-            "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-4.2.2.tgz",
+-            "integrity": "sha512-o/HelwhuKpTj/frsOsbNLNgnNGVIFsVP/SW2BSF14gVl7kAfMOJ6/8wUAUvG1R1NHKrfG+2sHZTu0yauT1qBrA==",
++            "version": "5.1.3",
++            "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.1.3.tgz",
++            "integrity": "sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==",
+             "dev": true,
+             "requires": {
+-                "@babel/runtime": "^7.10.2",
+-                "@babel/runtime-corejs3": "^7.10.2"
++                "deep-equal": "^2.0.5"
+             }
+         },
+         "arr-diff": {
+diff --git a/package.json b/package.json
+index 29b723a..4961a78 100644
+--- a/package.json
++++ b/package.json
+@@ -7,6 +7,8 @@
+         "@symfony/stimulus-bridge": "^3.2.0",
+         "@symfony/stimulus-testing": "^2.0.1",
+         "@symfony/webpack-encore": "^4.0.0",
++        "@testing-library/dom": "^8.19.0",
++        "@testing-library/user-event": "^14.4.3",
+         "bootstrap": "^5.2.2",
+         "core-js": "^3.23.0",
+         "regenerator-runtime": "^0.13.9",

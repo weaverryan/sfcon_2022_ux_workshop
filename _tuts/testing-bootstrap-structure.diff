@@ -1,0 +1,26 @@
+diff --git a/assets/.babelrc b/assets/.babelrc
+new file mode 100644
+index 0000000..309070e
+--- /dev/null
++++ b/assets/.babelrc
+@@ -0,0 +1,3 @@
++{
++    "presets": ["@babel/env"]
++}
+diff --git a/assets/jest.config.js b/assets/jest.config.js
+new file mode 100644
+index 0000000..310c07e
+--- /dev/null
++++ b/assets/jest.config.js
+@@ -0,0 +1,4 @@
++module.exports = {
++    'testRegex': 'test/.*\\.test.js',
++    'setupFilesAfterEnv': ['./test/setup.js']
++};
+diff --git a/assets/test/setup.js b/assets/test/setup.js
+new file mode 100644
+index 0000000..d6f6944
+--- /dev/null
++++ b/assets/test/setup.js
+@@ -0,0 +1 @@
++import '@symfony/ux-testing/setup';

@@ -1,0 +1,13 @@
+diff --git a/assets/controllers/vote-controller.js b/assets/controllers/vote-controller.js
+index 209e1d5..e4923f5 100644
+--- a/assets/controllers/vote-controller.js
++++ b/assets/controllers/vote-controller.js
+@@ -15,7 +15,7 @@ export default class extends Controller {
+         this.#changeVote('down');
+     }
+ 
+-    #changeVote(direction) {
++    async #changeVote(direction) {
+         const response = await fetch(this.urlValue, {
+             method: 'POST',
+             body: JSON.stringify({direction: direction})

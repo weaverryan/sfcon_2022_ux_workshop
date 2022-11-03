@@ -1,0 +1,36 @@
+diff --git a/assets/controllers/vote-controller.js b/assets/controllers/vote-controller.js
+index c28073c..51d67ed 100644
+--- a/assets/controllers/vote-controller.js
++++ b/assets/controllers/vote-controller.js
+@@ -3,6 +3,10 @@ import { Controller } from '@hotwired/stimulus';
+ export default class extends Controller {
+     static targets = ['total'];
+ 
++    static values = {
++        url: String,
++    }
++
+     upVote() {
+         this.#changeVote('up');
+     }
+@@ -12,6 +16,7 @@ export default class extends Controller {
+     }
+ 
+     #changeVote(direction) {
++        console.log(this.urlValue);
+         const total = parseInt(this.totalTarget.innerHTML.trim());
+         const change = direction === 'up' ? 1 : -1;
+ 
+diff --git a/templates/mix/show.html.twig b/templates/mix/show.html.twig
+index c9ae665..13e8dc6 100644
+--- a/templates/mix/show.html.twig
++++ b/templates/mix/show.html.twig
+@@ -13,7 +13,7 @@
+                 <h2 class="mb-4">{{ mix.trackCount }} songs <small>(genre: {{ mix.genre }})</small></h2>
+                 <p>{{ mix.description }}</p>
+ 
+-                <div {{ stimulus_controller('vote') }}>
++                <div {{ stimulus_controller('vote', { url: path('app_mix_vote', { id: mix.id }) }) }}>
+                     <span {{ stimulus_target('vote', 'total') }}>{{ mix.votes }}</span> votes
+                     <button
+                         class="btn btn-outline-primary"

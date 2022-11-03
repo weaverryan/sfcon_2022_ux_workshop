@@ -1,5 +1,5 @@
 diff --git a/assets/controllers/vote-controller.js b/assets/controllers/vote-controller.js
-index e3bed0e..7d19503 100644
+index e3bed0e..6fb4676 100644
 --- a/assets/controllers/vote-controller.js
 +++ b/assets/controllers/vote-controller.js
 @@ -1,7 +1,11 @@
@@ -10,13 +10,13 @@ index e3bed0e..7d19503 100644
 +
      upVote() {
 -        console.log('upvote!');
-+        const total = parseInt(this.totalTarget.innerText.trim());
++        const total = parseInt(this.totalTarget.innerHTML.trim());
 +
-+        this.totalTarget.innerText = total + 1;
++        this.totalTarget.innerHTML = total + 1;
      }
  }
 diff --git a/templates/mix/show.html.twig b/templates/mix/show.html.twig
-index 6bd03e7..d21e28e 100644
+index c7eabbb..b27cc74 100644
 --- a/templates/mix/show.html.twig
 +++ b/templates/mix/show.html.twig
 @@ -14,7 +14,7 @@
@@ -26,5 +26,5 @@ index 6bd03e7..d21e28e 100644
 -                    <span>{{ mix.votes }}</span> votes
 +                    <span {{ stimulus_target('vote', 'total') }}>{{ mix.votes }}</span> votes
                      <button
-                         type="submit"
                          class="btn btn-outline-primary"
+                         {{ stimulus_action('vote', 'upVote') }}

@@ -64,7 +64,52 @@
             "id": "stimulus-refactor-private-method",
             "name": "Stimulus: refactor private method",
             "description": null
+        },
+        {
+            "id": "testing-install-at-symfony-stimulus-testing",
+            "name": "Testing: Install @symfony\/stimulus-testing",
+            "description": null
+        },
+        {
+            "id": "testing-bootstrap-structure",
+            "name": "Testing: bootstrap structure",
+            "description": null
+        },
+        {
+            "id": "testing-starting-test",
+            "name": "Testing: Starting test",
+            "description": null
+        },
+        {
+            "id": "testing-finish-test",
+            "name": "Testing: finish test",
+            "description": null
+        },
+        {
+            "id": "ajax-re-work-controller-for-ajax",
+            "name": "Ajax: re-work controller for Ajax",
+            "description": null
+        },
+        {
+            "id": "ajax-add-value",
+            "name": "Ajax: add value",
+            "description": null
+        },
+        {
+            "id": "ajax-make-ajax-call",
+            "name": "Ajax: make Ajax call",
+            "description": null
+        },
+        {
+            "id": "ajax-add-async-to-function",
+            "name": "Ajax: add async to function",
+            "description": null
+        },
+        {
+            "id": "ajax-use-ajax-response",
+            "name": "Ajax: use Ajax response",
+            "description": null
         }
     ],
-    "sha": "7c7c4448dc873d6d795dca77bef90c939c23d3a7"
+    "sha": "9fd85a8f8095a51ea977be5b2708cfcdde017607"
 }
