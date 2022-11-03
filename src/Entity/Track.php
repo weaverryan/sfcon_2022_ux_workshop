@@ -102,4 +102,9 @@ class Track
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return sprintf('%s (by %s)', $this->songTitle, $this->artistName);
+    }
 }
