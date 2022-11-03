@@ -8,16 +8,16 @@
             <div class="col-6">
                 <h1>Register</h1>
 
-                {{ form_start(registrationForm) }}
-                    {{ form_row(registrationForm.email) }}
-                    {{ form_row(registrationForm.plainPassword, {
+                {{ form_start(form) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.plainPassword, {
                         label: 'Password'
                     }) }}
-                    {{ form_row(registrationForm.favoriteTrack) }}
-                    {{ form_row(registrationForm.agreeTerms) }}
+                    {{ form_row(form.favoriteTrack) }}
+                    {{ form_row(form.agreeTerms) }}
 
                     <button type="submit" class="btn btn-primary" formnovalidate>Register</button>
-                {{ form_end(registrationForm) }}
+                {{ form_end(form) }}
             </div>
         </div>
     </div>
