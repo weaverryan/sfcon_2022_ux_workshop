@@ -71,4 +71,18 @@ class MixController extends AbstractController
             'slug' => $mix->getSlug(),
         ]);
     }
+
+    #[Route('/mix/edit/{id}/remove-song', name: 'app_mix_edit_remove_track')]
+    public function editRemoveSong(Track $track, EntityManagerInterface $entityManager): Response
+    {
+        $mix = $track->getMix();
+        $entityManager->remove($track);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Track removed!');
+
+        return $this->redirectToRoute('app_mix_edit', [
+            'slug' => $mix->getSlug(),
+        ]);
+    }
 }

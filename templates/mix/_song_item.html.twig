@@ -5,12 +5,9 @@
        </a>
        <span class="song-details">{{ track.songTitle }} - {{ track.artistName }}</span>
        {% if withControls|default(false) %}
-       <a href="#">
-           <i class="fas fa-bars mx-3"></i>
-       </a>
-       <a href="#">
-           <i class="fas fa-times"></i>
-       </a>
+           <form action="{{ path('app_mix_edit_remove_track', {id: track.id }) }}" method="post">
+               <button type="submit" class="btn btn-link"><i class="fas fa-times"></i></button>
+           </form>
        {% endif %}
    </div>
 </div>

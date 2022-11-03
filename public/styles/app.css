@@ -8,7 +8,7 @@ body {
     margin-top: 7px;
 }
 
-.song-list a {
+.song-list a, .song-list, .song-list .btn-link {
     color: #fff;
 }
 
