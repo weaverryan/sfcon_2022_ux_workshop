@@ -196,9 +196,11 @@ class VinylMix
 
     public function getNextTrackNumber(): int
     {
-        $tracks = $this->getTracks()->toArray();
-        $track = end($tracks);
+        $maxTrack = 0;
+        foreach ($this->getTracks() as $track) {
+            $maxTrack = max($maxTrack, $track->getTrackNumber());
+        }
 
-        return $track ? ($track->getTrackNumber() + 1) : 1;
+        return $maxTrack + 1;
     }
 }
