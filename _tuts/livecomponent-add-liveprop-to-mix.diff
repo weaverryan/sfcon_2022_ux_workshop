@@ -1,0 +1,12 @@
+diff --git a/src/Twig/Components/MixVotingComponent.php b/src/Twig/Components/MixVotingComponent.php
+index 907af73..4d2d92d 100644
+--- a/src/Twig/Components/MixVotingComponent.php
++++ b/src/Twig/Components/MixVotingComponent.php
+@@ -12,6 +12,7 @@ final class MixVotingComponent
+ {
+     use DefaultActionTrait;
+ 
++    #[LiveProp]
+     public VinylMix $mix;
+ 
+     #[LiveProp(writable: true)]

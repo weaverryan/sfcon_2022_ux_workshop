@@ -1,0 +1,26 @@
+diff --git a/src/Twig/Components/MixVotingComponent.php b/src/Twig/Components/MixVotingComponent.php
+index 4d2d92d..a35fd9d 100644
+--- a/src/Twig/Components/MixVotingComponent.php
++++ b/src/Twig/Components/MixVotingComponent.php
+@@ -14,7 +14,4 @@ final class MixVotingComponent
+ 
+     #[LiveProp]
+     public VinylMix $mix;
+-
+-    #[LiveProp(writable: true)]
+-    public string $firstName = 'Ryan';
+ }
+diff --git a/templates/components/mix_voting.html.twig b/templates/components/mix_voting.html.twig
+index 9c0aefe..a96e532 100644
+--- a/templates/components/mix_voting.html.twig
++++ b/templates/components/mix_voting.html.twig
+@@ -1,9 +1,3 @@
+ <div{{ attributes }}>
+     TESTING: {{ mix.title }}
+-    <hr>
+-    <div>
+-        <input type="text" data-model="firstName">
+-        <br>
+-        Name: {{ firstName }}
+-    </div>
+ </div>

@@ -1,8 +1,8 @@
 diff --git a/templates/mix/addSong.html.twig b/templates/mix/addSong.html.twig
-index 31e1d55..69119a7 100644
+index 62e1bee..bc878a2 100644
 --- a/templates/mix/addSong.html.twig
 +++ b/templates/mix/addSong.html.twig
-@@ -6,13 +6,15 @@
+@@ -6,14 +6,16 @@
  <div class="container">
      <h1>Add a Song</h1>
  
@@ -17,8 +17,10 @@ index 31e1d55..69119a7 100644
 +            {{ form_row(form.length) }}
  
 -        <button type="submit" class="btn btn-primary" formnovalidate>Add <span class="fa fa-plus"></span></button>
+-        <a href="{{ path('app_mix_edit', { slug: mix.slug }) }}">cancel</a>
 -    {{ form_end(form) }}
 +            <button type="submit" class="btn btn-primary" formnovalidate>Add <span class="fa fa-plus"></span></button>
++            <a href="{{ path('app_mix_edit', { slug: mix.slug }) }}">cancel</a>
 +        {{ form_end(form) }}
 +    </turbo-frame>
  </div>

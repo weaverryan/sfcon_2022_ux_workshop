@@ -1,0 +1,38 @@
+diff --git a/templates/components/mix_voting.html.twig b/templates/components/mix_voting.html.twig
+index a96e532..9c08e68 100644
+--- a/templates/components/mix_voting.html.twig
++++ b/templates/components/mix_voting.html.twig
+@@ -1,3 +1,9 @@
+ <div{{ attributes }}>
+-    TESTING: {{ mix.title }}
++    <span>{{ mix.votes }}</span> votes
++    <button
++        class="btn btn-outline-primary"
++    ><span class="fa fa-thumbs-up"></span></button>
++    <button
++        class="btn btn-outline-primary"
++    ><span class="fa fa-thumbs-down"></span></button>
+ </div>
+diff --git a/templates/mix/show.html.twig b/templates/mix/show.html.twig
+index d324884..df5c7aa 100644
+--- a/templates/mix/show.html.twig
++++ b/templates/mix/show.html.twig
+@@ -17,18 +17,6 @@
+                     mix: mix
+                 }) }}
+ 
+-                <div {{ stimulus_controller('vote', { url: path('app_mix_vote', { id: mix.id }) }) }}>
+-                    <span {{ stimulus_target('vote', 'total') }}>{{ mix.votes }}</span> votes
+-                    <button
+-                        class="btn btn-outline-primary"
+-                        {{ stimulus_action('vote', 'upVote') }}
+-                    ><span class="fa fa-thumbs-up"></span></button>
+-                    <button
+-                        class="btn btn-outline-primary"
+-                        {{ stimulus_action('vote', 'downVote') }}
+-                    ><span class="fa fa-thumbs-down"></span></button>
+-                </div>
+-
+                 <hr>
+ 
+                 <div id="mix-{{ mix.id }}-track-list">

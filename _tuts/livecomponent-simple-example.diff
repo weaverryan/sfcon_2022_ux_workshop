@@ -1,0 +1,34 @@
+diff --git a/src/Twig/Components/MixVotingComponent.php b/src/Twig/Components/MixVotingComponent.php
+index b9393fc..907af73 100644
+--- a/src/Twig/Components/MixVotingComponent.php
++++ b/src/Twig/Components/MixVotingComponent.php
+@@ -4,6 +4,7 @@ namespace App\Twig\Components;
+ 
+ use App\Entity\VinylMix;
+ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
++use Symfony\UX\LiveComponent\Attribute\LiveProp;
+ use Symfony\UX\LiveComponent\DefaultActionTrait;
+ 
+ #[AsLiveComponent('mix_voting')]
+@@ -12,4 +13,7 @@ final class MixVotingComponent
+     use DefaultActionTrait;
+ 
+     public VinylMix $mix;
++
++    #[LiveProp(writable: true)]
++    public string $firstName = 'Ryan';
+ }
+diff --git a/templates/components/mix_voting.html.twig b/templates/components/mix_voting.html.twig
+index a96e532..9c0aefe 100644
+--- a/templates/components/mix_voting.html.twig
++++ b/templates/components/mix_voting.html.twig
+@@ -1,3 +1,9 @@
+ <div{{ attributes }}>
+     TESTING: {{ mix.title }}
++    <hr>
++    <div>
++        <input type="text" data-model="firstName">
++        <br>
++        Name: {{ firstName }}
++    </div>
+ </div>

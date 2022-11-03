@@ -12,7 +12,7 @@ index a42cf39..4f5d954 100644
              }
          }
 diff --git a/assets/styles/app.css b/assets/styles/app.css
-index c445370..5f3ceb5 100644
+index 8de4ee0..0280ef2 100644
 --- a/assets/styles/app.css
 +++ b/assets/styles/app.css
 @@ -1,5 +1,6 @@

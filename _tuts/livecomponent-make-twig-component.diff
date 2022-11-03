@@ -1,0 +1,27 @@
+diff --git a/src/Twig/Components/MixVotingComponent.php b/src/Twig/Components/MixVotingComponent.php
+new file mode 100644
+index 0000000..3aeefd6
+--- /dev/null
++++ b/src/Twig/Components/MixVotingComponent.php
+@@ -0,0 +1,12 @@
++<?php
++
++namespace App\Twig\Components;
++
++use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
++use Symfony\UX\LiveComponent\DefaultActionTrait;
++
++#[AsLiveComponent('mix_voting')]
++final class MixVotingComponent
++{
++    use DefaultActionTrait;
++}
+diff --git a/templates/components/mix_voting.html.twig b/templates/components/mix_voting.html.twig
+new file mode 100644
+index 0000000..75ebedd
+--- /dev/null
++++ b/templates/components/mix_voting.html.twig
+@@ -0,0 +1,3 @@
++<div{{ attributes }}>
++    <!-- component html -->
++</div>

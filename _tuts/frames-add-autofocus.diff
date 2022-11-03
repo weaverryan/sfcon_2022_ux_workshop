@@ -1,0 +1,15 @@
+diff --git a/templates/mix/addSong.html.twig b/templates/mix/addSong.html.twig
+index bc878a2..385f9b3 100644
+--- a/templates/mix/addSong.html.twig
++++ b/templates/mix/addSong.html.twig
+@@ -8,7 +8,9 @@
+ 
+     <turbo-frame id="add-song-form">
+         {{ form_start(form) }}
+-            {{ form_row(form.songTitle) }}
++            {{ form_row(form.songTitle, {
++                attr: {autofocus: true}
++            }) }}
+             {{ form_row(form.artistName) }}
+             {{ form_row(form.length) }}
+ 

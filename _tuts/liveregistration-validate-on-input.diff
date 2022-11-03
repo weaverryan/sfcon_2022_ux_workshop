@@ -1,0 +1,26 @@
+diff --git a/src/Form/RegistrationFormType.php b/src/Form/RegistrationFormType.php
+index 68ae9ec..4356f6a 100644
+--- a/src/Form/RegistrationFormType.php
++++ b/src/Form/RegistrationFormType.php
+@@ -50,6 +50,7 @@ class RegistrationFormType extends AbstractType
+         ;
+     }
+ 
++
+     public function configureOptions(OptionsResolver $resolver): void
+     {
+         $resolver->setDefaults([
+diff --git a/src/Twig/Components/RegistrationFormComponent.php b/src/Twig/Components/RegistrationFormComponent.php
+index 94aaa60..fb767ea 100644
+--- a/src/Twig/Components/RegistrationFormComponent.php
++++ b/src/Twig/Components/RegistrationFormComponent.php
+@@ -19,4 +19,9 @@ final class RegistrationFormComponent extends AbstractController
+     {
+         return $this->createForm(RegistrationFormType::class);
+     }
++
++    private function getDataModelValue(): ?string
++    {
++        return 'on(input)|*';
++    }
+ }

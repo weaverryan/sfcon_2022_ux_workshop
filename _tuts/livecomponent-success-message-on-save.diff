@@ -1,0 +1,57 @@
+diff --git a/src/Twig/Components/MixVotingComponent.php b/src/Twig/Components/MixVotingComponent.php
+index a00db3a..bf64140 100644
+--- a/src/Twig/Components/MixVotingComponent.php
++++ b/src/Twig/Components/MixVotingComponent.php
+@@ -18,6 +18,9 @@ final class MixVotingComponent
+     #[LiveProp]
+     public VinylMix $mix;
+ 
++    #[LiveProp]
++    public bool $hasVoted = false;
++
+     #[LiveAction]
+     public function vote(#[LiveArg] string $direction, EntityManagerInterface $entityManager)
+     {
+@@ -27,5 +30,6 @@ final class MixVotingComponent
+             $this->mix->downVote();
+         }
+         $entityManager->flush();
++        $this->hasVoted = true;
+     }
+ }
+diff --git a/templates/components/mix_voting.html.twig b/templates/components/mix_voting.html.twig
+index 487c2af..678a913 100644
+--- a/templates/components/mix_voting.html.twig
++++ b/templates/components/mix_voting.html.twig
+@@ -1,15 +1,19 @@
+ <div{{ attributes }}>
+     <span>{{ mix.votes }}</span> votes
+-    <button
+-        class="btn btn-outline-primary"
+-        data-action="live#action"
+-        data-action-name="vote(direction=up)"
+-        data-loading="addAttribute(disabled)"
+-    ><span class="fa fa-thumbs-up"></span></button>
+-    <button
+-        class="btn btn-outline-primary"
+-        data-action="live#action"
+-        data-action-name="vote(direction=down)"
+-        data-loading="addAttribute(disabled)"
+-    ><span class="fa fa-thumbs-down"></span></button>
++    {% if hasVoted %}
++        <span class="alert alert-success p-1">Thanks!</span>
++    {% else %}
++        <button
++            class="btn btn-outline-primary"
++            data-action="live#action"
++            data-action-name="vote(direction=up)"
++            data-loading="addAttribute(disabled)"
++        ><span class="fa fa-thumbs-up"></span></button>
++        <button
++            class="btn btn-outline-primary"
++            data-action="live#action"
++            data-action-name="vote(direction=down)"
++            data-loading="addAttribute(disabled)"
++        ><span class="fa fa-thumbs-down"></span></button>
++    {% endif %}
+ </div>

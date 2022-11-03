@@ -1,0 +1,17 @@
+diff --git a/templates/components/mix_voting.html.twig b/templates/components/mix_voting.html.twig
+index 9834f0a..487c2af 100644
+--- a/templates/components/mix_voting.html.twig
++++ b/templates/components/mix_voting.html.twig
+@@ -4,10 +4,12 @@
+         class="btn btn-outline-primary"
+         data-action="live#action"
+         data-action-name="vote(direction=up)"
++        data-loading="addAttribute(disabled)"
+     ><span class="fa fa-thumbs-up"></span></button>
+     <button
+         class="btn btn-outline-primary"
+         data-action="live#action"
+         data-action-name="vote(direction=down)"
++        data-loading="addAttribute(disabled)"
+     ><span class="fa fa-thumbs-down"></span></button>
+ </div>

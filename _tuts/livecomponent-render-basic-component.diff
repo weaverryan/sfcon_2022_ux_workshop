@@ -1,0 +1,43 @@
+diff --git a/src/Twig/Components/MixVotingComponent.php b/src/Twig/Components/MixVotingComponent.php
+index 3aeefd6..b9393fc 100644
+--- a/src/Twig/Components/MixVotingComponent.php
++++ b/src/Twig/Components/MixVotingComponent.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\Twig\Components;
+ 
++use App\Entity\VinylMix;
+ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+ use Symfony\UX\LiveComponent\DefaultActionTrait;
+ 
+@@ -9,4 +10,6 @@ use Symfony\UX\LiveComponent\DefaultActionTrait;
+ final class MixVotingComponent
+ {
+     use DefaultActionTrait;
++
++    public VinylMix $mix;
+ }
+diff --git a/templates/components/mix_voting.html.twig b/templates/components/mix_voting.html.twig
+index 75ebedd..a96e532 100644
+--- a/templates/components/mix_voting.html.twig
++++ b/templates/components/mix_voting.html.twig
+@@ -1,3 +1,3 @@
+ <div{{ attributes }}>
+-    <!-- component html -->
++    TESTING: {{ mix.title }}
+ </div>
+diff --git a/templates/mix/show.html.twig b/templates/mix/show.html.twig
+index cd20c89..d324884 100644
+--- a/templates/mix/show.html.twig
++++ b/templates/mix/show.html.twig
+@@ -13,6 +13,10 @@
+                 <h2 class="mb-4">{{ mix.trackCount }} songs <small>(genre: {{ mix.genre }})</small></h2>
+                 <p>{{ mix.description }}</p>
+ 
++                {{ component('mix_voting', {
++                    mix: mix
++                }) }}
++
+                 <div {{ stimulus_controller('vote', { url: path('app_mix_vote', { id: mix.id }) }) }}>
+                     <span {{ stimulus_target('vote', 'total') }}>{{ mix.votes }}</span> votes
+                     <button

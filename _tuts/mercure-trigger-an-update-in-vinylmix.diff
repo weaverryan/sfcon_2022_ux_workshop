@@ -1,0 +1,12 @@
+diff --git a/src/Controller/MixController.php b/src/Controller/MixController.php
+index 46047c2..bcc4340 100644
+--- a/src/Controller/MixController.php
++++ b/src/Controller/MixController.php
+@@ -44,6 +44,7 @@ class MixController extends AbstractController
+             $track->setTrackNumber($mix->getNextTrackNumber());
+ 
+             $entityManager->persist($track);
++            $mix->setUpdatedAt(new \DateTime());
+             $entityManager->flush();
+ 
+             if ($request->getPreferredFormat() === TurboBundle::STREAM_FORMAT) {

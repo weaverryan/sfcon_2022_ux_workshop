@@ -1,0 +1,17 @@
+diff --git a/templates/broadcast/VinylMix.stream.html.twig b/templates/broadcast/VinylMix.stream.html.twig
+new file mode 100644
+index 0000000..c6071af
+--- /dev/null
++++ b/templates/broadcast/VinylMix.stream.html.twig
+@@ -0,0 +1,11 @@
++{% block update %}
++    <turbo-stream action="update" target="mix-{{ entity.id }}-track-list">
++        <template>
++            {% for track in entity.tracks %}
++                {{ include('mix/_song_item.html.twig', {
++                    withControls: false
++                }) }}
++            {% endfor %}
++        </template>
++    </turbo-stream>
++{% endblock %}

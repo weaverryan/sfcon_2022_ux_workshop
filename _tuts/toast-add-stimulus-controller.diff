@@ -1,0 +1,22 @@
+diff --git a/assets/controllers/toast-controller.js b/assets/controllers/toast-controller.js
+new file mode 100644
+index 0000000..274cb79
+--- /dev/null
++++ b/assets/controllers/toast-controller.js
+@@ -0,0 +1,16 @@
++import { Controller } from '@hotwired/stimulus';
++import { Toast } from 'bootstrap';
++
++export default class extends Controller {
++    connect() {
++        // allows toast elements to be rendered anywhere on the page
++        const toastContainer = document.getElementById('toast-container');
++        if (this.element.parentNode !== toastContainer) {
++            toastContainer.appendChild(this.element);
++            return;
++        }
++
++        const toast = new Toast(this.element);
++        toast.show();
++    }
++}

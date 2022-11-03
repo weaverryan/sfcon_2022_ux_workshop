@@ -1,0 +1,17 @@
+diff --git a/templates/components/mix_voting.html.twig b/templates/components/mix_voting.html.twig
+index 678a913..fee8970 100644
+--- a/templates/components/mix_voting.html.twig
++++ b/templates/components/mix_voting.html.twig
+@@ -1,7 +1,11 @@
+ <div{{ attributes }}>
+     <span>{{ mix.votes }}</span> votes
+     {% if hasVoted %}
+-        <span class="alert alert-success p-1">Thanks!</span>
++        {% embed '_toast.html.twig' %}
++            {% block toast_body %}
++                Thanks for voting!
++            {% endblock %}
++        {% endembed %}
+     {% else %}
+         <button
+             class="btn btn-outline-primary"

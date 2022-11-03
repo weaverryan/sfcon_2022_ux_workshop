@@ -1,0 +1,304 @@
+diff --git a/assets/controllers.json b/assets/controllers.json
+index 88e81af..a0c7569 100644
+--- a/assets/controllers.json
++++ b/assets/controllers.json
+@@ -14,6 +14,12 @@
+                 "enabled": true,
+                 "fetch": "eager"
+             }
++        },
++        "@symfony/ux-turbo-mercure": {
++            "turbo-stream": {
++                "enabled": true,
++                "fetch": "eager"
++            }
+         }
+     },
+     "entrypoints": []
+diff --git a/composer.json b/composer.json
+index eec913c..7280483 100644
+--- a/composer.json
++++ b/composer.json
+@@ -28,6 +28,7 @@
+         "symfony/twig-bundle": "6.2.*",
+         "symfony/ux-autocomplete": "^2.4",
+         "symfony/ux-turbo": "^2.4",
++        "symfony/ux-turbo-mercure": "^2.4",
+         "symfony/validator": "6.2.*",
+         "symfony/webpack-encore-bundle": "^1.16",
+         "symfony/yaml": "6.2.*",
+diff --git a/composer.lock b/composer.lock
+index 2c96583..97bfe72 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -4,7 +4,7 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+         "This file is @generated automatically"
+     ],
+-    "content-hash": "722c0b9f772d3ac9a8bb34632e2552cf",
++    "content-hash": "f28175acc96e8eb29669b13b860a3b3b",
+     "packages": [
+         {
+             "name": "babdev/pagerfanta-bundle",
+@@ -6548,6 +6548,82 @@
+             ],
+             "time": "2022-07-08T14:57:18+00:00"
+         },
++        {
++            "name": "symfony/ux-turbo-mercure",
++            "version": "v2.4.0",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/symfony/ux-turbo-mercure.git",
++                "reference": "2f8cef7922960927076a9f07f25dbb365af29c66"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/symfony/ux-turbo-mercure/zipball/2f8cef7922960927076a9f07f25dbb365af29c66",
++                "reference": "2f8cef7922960927076a9f07f25dbb365af29c66",
++                "shasum": ""
++            },
++            "require": {
++                "php": ">=7.2.5",
++                "symfony/mercure-bundle": "^0.3",
++                "symfony/twig-bundle": "^5.2|^6.0",
++                "symfony/ux-turbo": "^2.0"
++            },
++            "suggest": {
++                "symfony/expression-language": "To use expression language in topics"
++            },
++            "type": "library",
++            "extra": {
++                "thanks": {
++                    "name": "symfony/ux-turbo",
++                    "url": "https://github.com/symfony/ux"
++                }
++            },
++            "autoload": {
++                "psr-4": {
++                    "Symfony\\UX\\Turbo\\Bridge\\Mercure\\": ""
++                }
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Kévin Dunglas",
++                    "email": "kevin@dunglas.fr"
++                },
++                {
++                    "name": "Symfony Community",
++                    "homepage": "https://symfony.com/contributors"
++                }
++            ],
++            "description": "Mercure bridge for Symfony UX Turbo",
++            "homepage": "https://symfony.com",
++            "keywords": [
++                "hotwire",
++                "mercure",
++                "symfony-ux",
++                "turbo"
++            ],
++            "support": {
++                "source": "https://github.com/symfony/ux-turbo-mercure/tree/v2.4.0"
++            },
++            "funding": [
++                {
++                    "url": "https://symfony.com/sponsor",
++                    "type": "custom"
++                },
++                {
++                    "url": "https://github.com/fabpot",
++                    "type": "github"
++                },
++                {
++                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
++                    "type": "tidelift"
++                }
++            ],
++            "time": "2022-06-16T17:06:17+00:00"
++        },
+         {
+             "name": "symfony/validator",
+             "version": "v6.2.0-BETA2",
+diff --git a/package-lock.json b/package-lock.json
+index 1e4c10c..afaa3c6 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -15,6 +15,7 @@
+                 "@symfony/stimulus-testing": "^2.0.1",
+                 "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
+                 "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets",
++                "@symfony/ux-turbo-mercure": "file:vendor/symfony/ux-turbo-mercure/Resources/assets",
+                 "@symfony/webpack-encore": "^4.0.0",
+                 "@testing-library/dom": "^8.19.0",
+                 "@testing-library/user-event": "^14.4.3",
+@@ -3457,6 +3458,10 @@
+             "resolved": "vendor/symfony/ux-turbo/Resources/assets",
+             "link": true
+         },
++        "node_modules/@symfony/ux-turbo-mercure": {
++            "resolved": "vendor/symfony/ux-turbo-mercure/Resources/assets",
++            "link": true
++        },
+         "node_modules/@symfony/webpack-encore": {
+             "version": "4.1.1",
+             "resolved": "https://registry.npmjs.org/@symfony/webpack-encore/-/webpack-encore-4.1.1.tgz",
+@@ -6122,6 +6127,12 @@
+                 "node": ">=4"
+             }
+         },
++        "node_modules/cssfontparser": {
++            "version": "1.2.1",
++            "resolved": "https://registry.npmjs.org/cssfontparser/-/cssfontparser-1.2.1.tgz",
++            "integrity": "sha512-6tun4LoZnj7VN6YeegOVb67KBX/7JJsqvj+pv3ZA7F878/eN33AbGa5b/S/wXxS/tcp8nc40xRUrsPlxIyNUPg==",
++            "dev": true
++        },
+         "node_modules/cssnano": {
+             "version": "5.1.14",
+             "resolved": "https://registry.npmjs.org/cssnano/-/cssnano-5.1.14.tgz",
+@@ -8693,6 +8704,16 @@
+                 "node": ">= 10.14.2"
+             }
+         },
++        "node_modules/jest-canvas-mock": {
++            "version": "2.4.0",
++            "resolved": "https://registry.npmjs.org/jest-canvas-mock/-/jest-canvas-mock-2.4.0.tgz",
++            "integrity": "sha512-mmMpZzpmLzn5vepIaHk5HoH3Ka4WykbSoLuG/EKoJd0x0ID/t+INo1l8ByfcUJuDM+RIsL4QDg/gDnBbrj2/IQ==",
++            "dev": true,
++            "dependencies": {
++                "cssfontparser": "^1.2.1",
++                "moo-color": "^1.0.2"
++            }
++        },
+         "node_modules/jest-changed-files": {
+             "version": "26.6.2",
+             "resolved": "https://registry.npmjs.org/jest-changed-files/-/jest-changed-files-26.6.2.tgz",
+@@ -12194,6 +12215,21 @@
+                 "node": ">=0.10.0"
+             }
+         },
++        "node_modules/moo-color": {
++            "version": "1.0.3",
++            "resolved": "https://registry.npmjs.org/moo-color/-/moo-color-1.0.3.tgz",
++            "integrity": "sha512-i/+ZKXMDf6aqYtBhuOcej71YSlbjT3wCO/4H1j8rPvxDJEifdwgg5MaFyu6iYAT8GBZJg2z0dkgK4YMzvURALQ==",
++            "dev": true,
++            "dependencies": {
++                "color-name": "^1.1.4"
++            }
++        },
++        "node_modules/moo-color/node_modules/color-name": {
++            "version": "1.1.4",
++            "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
++            "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
++            "dev": true
++        },
+         "node_modules/ms": {
+             "version": "2.1.2",
+             "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
+@@ -16803,7 +16839,22 @@
+                 "tom-select": "^2.0.1"
+             }
+         },
++        "vendor/symfony/ux-turbo-mercure/Resources/assets": {
++            "version": "0.1.0",
++            "dev": true,
++            "license": "MIT",
++            "devDependencies": {
++                "@hotwired/stimulus": "^3.0.0",
++                "@hotwired/turbo": "^7.0.1",
++                "jest-canvas-mock": "^2.3.0"
++            },
++            "peerDependencies": {
++                "@hotwired/stimulus": "^3.0.0",
++                "@hotwired/turbo": "^7.0.1"
++            }
++        },
+         "vendor/symfony/ux-turbo/Resources/assets": {
++            "name": "@symfony/ux-turbo",
+             "version": "0.1.0",
+             "dev": true,
+             "license": "MIT",
+@@ -19381,6 +19432,14 @@
+                 "@hotwired/turbo": "^7.1.0"
+             }
+         },
++        "@symfony/ux-turbo-mercure": {
++            "version": "file:vendor/symfony/ux-turbo-mercure/Resources/assets",
++            "requires": {
++                "@hotwired/stimulus": "^3.0.0",
++                "@hotwired/turbo": "^7.0.1",
++                "jest-canvas-mock": "^2.3.0"
++            }
++        },
+         "@symfony/webpack-encore": {
+             "version": "4.1.1",
+             "resolved": "https://registry.npmjs.org/@symfony/webpack-encore/-/webpack-encore-4.1.1.tgz",
+@@ -21388,6 +21447,12 @@
+             "integrity": "sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==",
+             "dev": true
+         },
++        "cssfontparser": {
++            "version": "1.2.1",
++            "resolved": "https://registry.npmjs.org/cssfontparser/-/cssfontparser-1.2.1.tgz",
++            "integrity": "sha512-6tun4LoZnj7VN6YeegOVb67KBX/7JJsqvj+pv3ZA7F878/eN33AbGa5b/S/wXxS/tcp8nc40xRUrsPlxIyNUPg==",
++            "dev": true
++        },
+         "cssnano": {
+             "version": "5.1.14",
+             "resolved": "https://registry.npmjs.org/cssnano/-/cssnano-5.1.14.tgz",
+@@ -23337,6 +23402,16 @@
+                 "jest-cli": "^26.6.3"
+             }
+         },
++        "jest-canvas-mock": {
++            "version": "2.4.0",
++            "resolved": "https://registry.npmjs.org/jest-canvas-mock/-/jest-canvas-mock-2.4.0.tgz",
++            "integrity": "sha512-mmMpZzpmLzn5vepIaHk5HoH3Ka4WykbSoLuG/EKoJd0x0ID/t+INo1l8ByfcUJuDM+RIsL4QDg/gDnBbrj2/IQ==",
++            "dev": true,
++            "requires": {
++                "cssfontparser": "^1.2.1",
++                "moo-color": "^1.0.2"
++            }
++        },
+         "jest-changed-files": {
+             "version": "26.6.2",
+             "resolved": "https://registry.npmjs.org/jest-changed-files/-/jest-changed-files-26.6.2.tgz",
+@@ -26025,6 +26100,23 @@
+                 "is-extendable": "^1.0.1"
+             }
+         },
++        "moo-color": {
++            "version": "1.0.3",
++            "resolved": "https://registry.npmjs.org/moo-color/-/moo-color-1.0.3.tgz",
++            "integrity": "sha512-i/+ZKXMDf6aqYtBhuOcej71YSlbjT3wCO/4H1j8rPvxDJEifdwgg5MaFyu6iYAT8GBZJg2z0dkgK4YMzvURALQ==",
++            "dev": true,
++            "requires": {
++                "color-name": "^1.1.4"
++            },
++            "dependencies": {
++                "color-name": {
++                    "version": "1.1.4",
++                    "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
++                    "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
++                    "dev": true
++                }
++            }
++        },
+         "ms": {
+             "version": "2.1.2",
+             "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
+diff --git a/package.json b/package.json
+index 0b96b06..d453e2b 100644
+--- a/package.json
++++ b/package.json
+@@ -9,6 +9,7 @@
+         "@symfony/stimulus-testing": "^2.0.1",
+         "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
+         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets",
++        "@symfony/ux-turbo-mercure": "file:vendor/symfony/ux-turbo-mercure/Resources/assets",
+         "@symfony/webpack-encore": "^4.0.0",
+         "@testing-library/dom": "^8.19.0",
+         "@testing-library/user-event": "^14.4.3",

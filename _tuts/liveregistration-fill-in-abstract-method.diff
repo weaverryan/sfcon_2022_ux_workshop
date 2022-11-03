@@ -1,0 +1,27 @@
+diff --git a/src/Twig/Components/RegistrationFormComponent.php b/src/Twig/Components/RegistrationFormComponent.php
+index 8455211..94aaa60 100644
+--- a/src/Twig/Components/RegistrationFormComponent.php
++++ b/src/Twig/Components/RegistrationFormComponent.php
+@@ -2,18 +2,21 @@
+ 
+ namespace App\Twig\Components;
+ 
++use App\Form\RegistrationFormType;
++use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+ use Symfony\Component\Form\FormInterface;
+ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+ use Symfony\UX\LiveComponent\ComponentWithFormTrait;
+ use Symfony\UX\LiveComponent\DefaultActionTrait;
+ 
+ #[AsLiveComponent('registration_form')]
+-final class RegistrationFormComponent
++final class RegistrationFormComponent extends AbstractController
+ {
+     use DefaultActionTrait;
+     use ComponentWithFormTrait;
+ 
+     protected function instantiateForm(): FormInterface
+     {
++        return $this->createForm(RegistrationFormType::class);
+     }
+ }

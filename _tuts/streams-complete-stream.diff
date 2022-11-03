@@ -1,0 +1,53 @@
+diff --git a/templates/mix/_trackListEdit.html.twig b/templates/mix/_trackListEdit.html.twig
+new file mode 100644
+index 0000000..aa0c7b1
+--- /dev/null
++++ b/templates/mix/_trackListEdit.html.twig
+@@ -0,0 +1,12 @@
++<h2 class="mb-4">{{ mix.tracks|length }} songs ({{ mix.MinutesRemaining }} minutes of {{ mix.totalPossibleMinutes }} still available)</h2>
++{% for track in mix.tracks %}
++    {{ include('mix/_song_item.html.twig', {
++        withControls: true
++    }) }}
++{% endfor %}
++
++<turbo-frame id="add-song-form">
++    <a href="{{ path('app_mix_edit_add_song', {
++        slug: mix.slug,
++    }) }}" class="btn btn-success"><i class="fas fa-plus"></i> Add a song</a>
++</turbo-frame>
+diff --git a/templates/mix/addSongSuccess.stream.html.twig b/templates/mix/addSongSuccess.stream.html.twig
+index 4d2ed8f..1d70f9e 100644
+--- a/templates/mix/addSongSuccess.stream.html.twig
++++ b/templates/mix/addSongSuccess.stream.html.twig
+@@ -1,5 +1,5 @@
+ <turbo-stream action="update" target="track-list-edit">
+     <template>
+-        Testing!?
++        {{ include('mix/_trackListEdit.html.twig') }}
+     </template>
+ </turbo-stream>
+diff --git a/templates/mix/edit.html.twig b/templates/mix/edit.html.twig
+index 629ee3c..a9e3500 100644
+--- a/templates/mix/edit.html.twig
++++ b/templates/mix/edit.html.twig
+@@ -10,18 +10,7 @@
+             {{ include('mix/_recordSvg.html.twig') }}
+         </div>
+         <div class="col-12 col-md-8 ps-5" id="track-list-edit">
+-            <h2 class="mb-4">{{ mix.tracks|length }} songs ({{ mix.MinutesRemaining }} minutes of {{ mix.totalPossibleMinutes }} still available)</h2>
+-            {% for track in mix.tracks %}
+-                {{ include('mix/_song_item.html.twig', {
+-                    withControls: true
+-                }) }}
+-            {% endfor %}
+-
+-            <turbo-frame id="add-song-form">
+-                <a href="{{ path('app_mix_edit_add_song', {
+-                    slug: mix.slug,
+-                }) }}" class="btn btn-success"><i class="fas fa-plus"></i> Add a song</a>
+-            </turbo-frame>
++            {{ include('mix/_trackListEdit.html.twig') }}
+         </div>
+     </div>
+ </div>

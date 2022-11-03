@@ -1,0 +1,32 @@
+diff --git a/templates/mix/show.html.twig b/templates/mix/show.html.twig
+index 13e8dc6..cd20c89 100644
+--- a/templates/mix/show.html.twig
++++ b/templates/mix/show.html.twig
+@@ -3,7 +3,7 @@
+ {% block title %}{{ mix.title }} Mix{% endblock %}
+ 
+ {% block body %}
+-    <div class="container">
++    <div class="container" {{ turbo_stream_listen(mix) }}>
+         <h1 class="d-inline me-3">{{ mix.title }}</h1>
+         <div class="row mt-5">
+             <div class="col-12 col-md-4">
+@@ -27,11 +27,13 @@
+ 
+                 <hr>
+ 
+-                {% for track in mix.tracks %}
+-                    {{ include('mix/_song_item.html.twig', {
+-                        withControls: false
+-                    }) }}
+-                {% endfor %}
++                <div id="mix-{{ mix.id }}-track-list">
++                    {% for track in mix.tracks %}
++                        {{ include('mix/_song_item.html.twig', {
++                            withControls: false
++                        }) }}
++                    {% endfor %}
++                </div>
+             </div>
+         </div>
+     </div>

@@ -1,5 +1,5 @@
 diff --git a/src/Controller/MixController.php b/src/Controller/MixController.php
-index 8e509d8..c1d7b69 100644
+index 9330fa7..5cdb143 100644
 --- a/src/Controller/MixController.php
 +++ b/src/Controller/MixController.php
 @@ -57,7 +57,8 @@ class MixController extends AbstractController
@@ -24,7 +24,7 @@ index 8e509d8..c1d7b69 100644
 +            'mix' => $mix,
          ]);
      }
- }
+ 
 diff --git a/templates/mix/_voteSuccess.html.twig b/templates/mix/_voteSuccess.html.twig
 new file mode 100644
 index 0000000..0ac80e3

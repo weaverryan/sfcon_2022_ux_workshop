@@ -1,0 +1,27 @@
+diff --git a/src/Twig/Components/MixVotingComponent.php b/src/Twig/Components/MixVotingComponent.php
+index b0c50a7..a00db3a 100644
+--- a/src/Twig/Components/MixVotingComponent.php
++++ b/src/Twig/Components/MixVotingComponent.php
+@@ -3,6 +3,7 @@
+ namespace App\Twig\Components;
+ 
+ use App\Entity\VinylMix;
++use Doctrine\ORM\EntityManagerInterface;
+ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+ use Symfony\UX\LiveComponent\Attribute\LiveAction;
+ use Symfony\UX\LiveComponent\Attribute\LiveArg;
+@@ -18,12 +19,13 @@ final class MixVotingComponent
+     public VinylMix $mix;
+ 
+     #[LiveAction]
+-    public function vote(#[LiveArg] string $direction)
++    public function vote(#[LiveArg] string $direction, EntityManagerInterface $entityManager)
+     {
+         if ($direction === 'up') {
+             $this->mix->upVote();
+         } else {
+             $this->mix->downVote();
+         }
++        $entityManager->flush();
+     }
+ }

@@ -1,0 +1,51 @@
+diff --git a/src/Controller/MixController.php b/src/Controller/MixController.php
+index 03eb153..46047c2 100644
+--- a/src/Controller/MixController.php
++++ b/src/Controller/MixController.php
+@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Routing\Annotation\Route;
++use Symfony\UX\Turbo\TurboBundle;
+ 
+ class MixController extends AbstractController
+ {
+@@ -45,6 +46,14 @@ class MixController extends AbstractController
+             $entityManager->persist($track);
+             $entityManager->flush();
+ 
++            if ($request->getPreferredFormat() === TurboBundle::STREAM_FORMAT) {
++                $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
++
++                return $this->render('mix/addSongSuccess.stream.html.twig', [
++                    'mix' => $mix,
++                ]);
++            }
++
+             return $this->redirectToRoute('app_mix_edit', [
+                 'slug' => $mix->getSlug(),
+             ]);
+diff --git a/templates/mix/addSongSuccess.stream.html.twig b/templates/mix/addSongSuccess.stream.html.twig
+new file mode 100644
+index 0000000..4d2ed8f
+--- /dev/null
++++ b/templates/mix/addSongSuccess.stream.html.twig
+@@ -0,0 +1,5 @@
++<turbo-stream action="update" target="track-list-edit">
++    <template>
++        Testing!?
++    </template>
++</turbo-stream>
+diff --git a/templates/mix/edit.html.twig b/templates/mix/edit.html.twig
+index 4ff1769..629ee3c 100644
+--- a/templates/mix/edit.html.twig
++++ b/templates/mix/edit.html.twig
+@@ -9,7 +9,7 @@
+         <div class="col-12 col-md-4">
+             {{ include('mix/_recordSvg.html.twig') }}
+         </div>
+-        <div class="col-12 col-md-8 ps-5">
++        <div class="col-12 col-md-8 ps-5" id="track-list-edit">
+             <h2 class="mb-4">{{ mix.tracks|length }} songs ({{ mix.MinutesRemaining }} minutes of {{ mix.totalPossibleMinutes }} still available)</h2>
+             {% for track in mix.tracks %}
+                 {{ include('mix/_song_item.html.twig', {

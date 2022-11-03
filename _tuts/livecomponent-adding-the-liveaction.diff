@@ -1,0 +1,45 @@
+diff --git a/src/Twig/Components/MixVotingComponent.php b/src/Twig/Components/MixVotingComponent.php
+index a35fd9d..b0c50a7 100644
+--- a/src/Twig/Components/MixVotingComponent.php
++++ b/src/Twig/Components/MixVotingComponent.php
+@@ -4,6 +4,8 @@ namespace App\Twig\Components;
+ 
+ use App\Entity\VinylMix;
+ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
++use Symfony\UX\LiveComponent\Attribute\LiveAction;
++use Symfony\UX\LiveComponent\Attribute\LiveArg;
+ use Symfony\UX\LiveComponent\Attribute\LiveProp;
+ use Symfony\UX\LiveComponent\DefaultActionTrait;
+ 
+@@ -14,4 +16,14 @@ final class MixVotingComponent
+ 
+     #[LiveProp]
+     public VinylMix $mix;
++
++    #[LiveAction]
++    public function vote(#[LiveArg] string $direction)
++    {
++        if ($direction === 'up') {
++            $this->mix->upVote();
++        } else {
++            $this->mix->downVote();
++        }
++    }
+ }
+diff --git a/templates/components/mix_voting.html.twig b/templates/components/mix_voting.html.twig
+index 9c08e68..9834f0a 100644
+--- a/templates/components/mix_voting.html.twig
++++ b/templates/components/mix_voting.html.twig
+@@ -2,8 +2,12 @@
+     <span>{{ mix.votes }}</span> votes
+     <button
+         class="btn btn-outline-primary"
++        data-action="live#action"
++        data-action-name="vote(direction=up)"
+     ><span class="fa fa-thumbs-up"></span></button>
+     <button
+         class="btn btn-outline-primary"
++        data-action="live#action"
++        data-action-name="vote(direction=down)"
+     ><span class="fa fa-thumbs-down"></span></button>
+ </div>

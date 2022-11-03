@@ -1,8 +1,8 @@
 diff --git a/assets/styles/app.css b/assets/styles/app.css
-index cb33b13..79b6fdb 100644
+index cb33b13..7e8022d 100644
 --- a/assets/styles/app.css
 +++ b/assets/styles/app.css
-@@ -1,3 +1,46 @@
+@@ -1,3 +1,51 @@
  body {
 -    background-color: lightgray;
 +    background-color: #17242C;
@@ -14,7 +14,7 @@ index cb33b13..79b6fdb 100644
 +    margin-top: 7px;
 +}
 +
-+.song-list a {
++.song-list a, .song-list, .song-list .btn-link {
 +    color: #fff;
 +}
 +
@@ -49,13 +49,18 @@ index cb33b13..79b6fdb 100644
 +    --bs-pagination-active-border-color: #666;
 +    --bs-pagination-border-color: none;
 +    --bs-pagination-active-bg: rgba(34,47,54,1);
++}
++
++.toast {
++    --bs-toast-header-bg: #17242C;
++    --bs-toast-bg: #3691d5;
  }
 diff --git a/public/styles/app.css b/public/styles/app.css
 deleted file mode 100644
-index 79b6fdb..0000000
+index 7e8022d..0000000
 --- a/public/styles/app.css
 +++ /dev/null
-@@ -1,46 +0,0 @@
+@@ -1,51 +0,0 @@
 -body {
 -    background-color: #17242C;
 -    color: #fff;
@@ -66,7 +71,7 @@ index 79b6fdb..0000000
 -    margin-top: 7px;
 -}
 -
--.song-list a {
+-.song-list a, .song-list, .song-list .btn-link {
 -    color: #fff;
 -}
 -
@@ -101,6 +106,11 @@ index 79b6fdb..0000000
 -    --bs-pagination-active-border-color: #666;
 -    --bs-pagination-border-color: none;
 -    --bs-pagination-active-bg: rgba(34,47,54,1);
+-}
+-
+-.toast {
+-    --bs-toast-header-bg: #17242C;
+-    --bs-toast-bg: #3691d5;
 -}
 diff --git a/templates/base.html.twig b/templates/base.html.twig
 index 6cfe2ef..39442a9 100644

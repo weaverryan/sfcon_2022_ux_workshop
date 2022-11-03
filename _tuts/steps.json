@@ -156,8 +156,8 @@
             "description": null
         },
         {
-            "id": "frames-advance-url",
-            "name": "Frames: Advance URL",
+            "id": "frames-add-autofocus",
+            "name": "Frames: add autofocus",
             "description": null
         },
         {
@@ -174,7 +174,152 @@
             "id": "frames-add-frame-for-next-page",
             "name": "Frames: add frame for next page",
             "description": null
+        },
+        {
+            "id": "streams-return-first-stream",
+            "name": "Streams: Return first stream",
+            "description": null
+        },
+        {
+            "id": "streams-complete-stream",
+            "name": "Streams: Complete stream",
+            "description": null
+        },
+        {
+            "id": "toast-add-toast-html-twig",
+            "name": "Toast: Add _toast.html.twig",
+            "description": null
+        },
+        {
+            "id": "toast-add-in-stream",
+            "name": "Toast: add in stream",
+            "description": null
+        },
+        {
+            "id": "toast-add-stimulus-controller",
+            "name": "Toast: Add Stimulus controller",
+            "description": null
+        },
+        {
+            "id": "mercure-install-symfony-mercure-bundle",
+            "name": "Mercure: install symfony\/mercure-bundle",
+            "description": null
+        },
+        {
+            "id": "mercure-install-symfony-ux-turbo-mercure",
+            "name": "Mercure: install symfony\/ux-turbo-mercure",
+            "description": null
+        },
+        {
+            "id": "mercure-add-broadcast-attribute",
+            "name": "Mercure: Add Broadcast attribute",
+            "description": null
+        },
+        {
+            "id": "mercure-listen-to-topic",
+            "name": "Mercure: listen to topic",
+            "description": null
+        },
+        {
+            "id": "mercure-add-broadcast-template",
+            "name": "Mercure: Add broadcast template",
+            "description": null
+        },
+        {
+            "id": "mercure-trigger-an-update-in-vinylmix",
+            "name": "Mercure: trigger an update in VinylMix",
+            "description": null
+        },
+        {
+            "id": "livecomponent-install-it",
+            "name": "LiveComponent: install it",
+            "description": null
+        },
+        {
+            "id": "livecomponent-make-twig-component",
+            "name": "LiveComponent: make:twig-component",
+            "description": null
+        },
+        {
+            "id": "livecomponent-render-basic-component",
+            "name": "LiveComponent: render basic component",
+            "description": null
+        },
+        {
+            "id": "livecomponent-simple-example",
+            "name": "LiveComponent: Simple example",
+            "description": null
+        },
+        {
+            "id": "delete-me",
+            "name": "delete me",
+            "description": null
+        },
+        {
+            "id": "livecomponent-add-liveprop-to-mix",
+            "name": "LiveComponent: Add LiveProp to mix",
+            "description": null
+        },
+        {
+            "id": "livecomponent-clear-out-dummy-code",
+            "name": "LiveComponent: clear out dummy code",
+            "description": null
+        },
+        {
+            "id": "livecomponent-render-full-markup",
+            "name": "LiveComponent: render full markup",
+            "description": null
+        },
+        {
+            "id": "livecomponent-adding-the-liveaction",
+            "name": "LiveComponent: adding the LiveAction",
+            "description": null
+        },
+        {
+            "id": "livecomponent-save-with-entity-manager-wq",
+            "name": "LiveComponent: save with entity manager:wq",
+            "description": null
+        },
+        {
+            "id": "livecomponent-add-data-loading",
+            "name": "LiveComponent: add data-loading",
+            "description": null
+        },
+        {
+            "id": "livecomponent-success-message-on-save",
+            "name": "LiveComponent: success message on save",
+            "description": null
+        },
+        {
+            "id": "livecomponent-use-toast-notification",
+            "name": "LiveComponent: use toast notification",
+            "description": null
+        },
+        {
+            "id": "liveregistration-make-twig-component",
+            "name": "LiveRegistration: make:twig-component",
+            "description": null
+        },
+        {
+            "id": "liveregistration-use-form-trait",
+            "name": "LiveRegistration: use form trait",
+            "description": null
+        },
+        {
+            "id": "liveregistration-fill-in-abstract-method",
+            "name": "LiveRegistration: fill in abstract method",
+            "description": null
+        },
+        {
+            "id": "liveregistration-pass-form-back-to-component",
+            "name": "LiveRegistration: Pass form back to component",
+            "description": null
+        },
+        {
+            "id": "liveregistration-validate-on-input",
+            "name": "LiveRegistration: validate on input",
+            "description": null
         }
     ],
-    "sha": "e475a21f3281bdda9c5a9cccca069fc34222afcc"
+    "sha": "f3af77d7b6c2ec8741eb50e4a1704025291eeca2"
 }

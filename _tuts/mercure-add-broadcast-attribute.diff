@@ -1,0 +1,15 @@
+diff --git a/src/Entity/VinylMix.php b/src/Entity/VinylMix.php
+index b1d9796..205ed5c 100644
+--- a/src/Entity/VinylMix.php
++++ b/src/Entity/VinylMix.php
+@@ -9,8 +9,10 @@ use Doctrine\DBAL\Types\Types;
+ use Doctrine\ORM\Mapping as ORM;
+ use Gedmo\Mapping\Annotation\Slug;
+ use Gedmo\Timestampable\Traits\TimestampableEntity;
++use Symfony\UX\Turbo\Attribute\Broadcast;
+ 
+ #[ORM\Entity(repositoryClass: VinylMixRepository::class)]
++#[Broadcast]
+ class VinylMix
+ {
+     use TimestampableEntity;

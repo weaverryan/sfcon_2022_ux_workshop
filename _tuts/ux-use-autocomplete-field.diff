@@ -1,8 +1,8 @@
 diff --git a/src/Form/RegistrationFormType.php b/src/Form/RegistrationFormType.php
-index f81dc1f..263c96e 100644
+index eca091d..68ae9ec 100644
 --- a/src/Form/RegistrationFormType.php
 +++ b/src/Form/RegistrationFormType.php
-@@ -20,13 +20,9 @@ class RegistrationFormType extends AbstractType
+@@ -20,14 +20,7 @@ class RegistrationFormType extends AbstractType
      {
          $builder
              ->add('email')
@@ -13,12 +13,11 @@ index f81dc1f..263c96e 100644
 -                    return sprintf('%s (by %s)', $track->getSongTitle(), $track->getArtistName());
 -                },
 -                'autocomplete' => true,
-+            ->add('favoriteTrack', TrackAutocompleteField::class, [
-+                // just a fake field for display
-+                'mapped' => false,
-             ])
+-            ])
++            ->add('favoriteTrack', TrackAutocompleteField::class)
              ->add('agreeTerms', CheckboxType::class, [
                  'mapped' => false,
+                 'constraints' => [
 diff --git a/src/Form/TrackAutocompleteField.php b/src/Form/TrackAutocompleteField.php
 index e9e64fe..31546a9 100644
 --- a/src/Form/TrackAutocompleteField.php

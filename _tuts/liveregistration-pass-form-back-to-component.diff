@@ -1,0 +1,15 @@
+diff --git a/templates/registration/register.html.twig b/templates/registration/register.html.twig
+index 4758d66..c19cde4 100644
+--- a/templates/registration/register.html.twig
++++ b/templates/registration/register.html.twig
+@@ -8,7 +8,9 @@
+             <div class="col-6">
+                 <h1>Register</h1>
+ 
+-                {{ component('registration_form') }}
++                {{ component('registration_form', {
++                    form: form
++                }) }}
+             </div>
+         </div>
+     </div>

@@ -1,0 +1,18 @@
+diff --git a/templates/_toast.html.twig b/templates/_toast.html.twig
+new file mode 100644
+index 0000000..0d0b54a
+--- /dev/null
++++ b/templates/_toast.html.twig
+@@ -0,0 +1,12 @@
++<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" {{ stimulus_controller('toast') }}>
++    <div class="toast-header">
++        <svg class="rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#007aff"></rect></svg>
++        <strong class="me-auto">Mixed Vinyl</strong>
++        <small>{{ when|default(null)|ago }}</small>
++        <button type="button" class="btn-close" data-bs-dismiss="toast"
++                aria-label="Close"></button>
++    </div>
++    <div class="toast-body">
++        {% block toast_body %}{% endblock %}
++    </div>
++</div>
