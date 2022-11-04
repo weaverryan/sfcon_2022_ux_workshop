@@ -39,12 +39,9 @@ Next, build the database and the schema with:
 # "symfony console" is equivalent to "bin/console"
 # but its aware of your database container
 symfony console doctrine:database:create --if-not-exists
-symfony console doctrine:migrations:migrate
+symfony console doctrine:schema:update --force
 symfony console doctrine:fixtures:load
 ```
-
-(If you get an error about "MySQL server has gone away", just wait
-a few seconds and try again - the container is probably still booting).
 
 If you do *not* want to use Docker, just make sure to start your own
 database server and update the `DATABASE_URL` environment variable in
