@@ -13,7 +13,7 @@
                 <h2 class="mb-4">{{ mix.trackCount }} songs <small>(genre: {{ mix.genre }})</small></h2>
                 <p>{{ mix.description }}</p>
 
-                <div {{ stimulus_controller('vote') }}>
+                <div {{ stimulus_controller('vote', { url: path('app_mix_vote', { id: mix.id }) }) }}>
                     <span {{ stimulus_target('vote', 'total') }}>{{ mix.votes }}</span> votes
                     <button
                         class="btn btn-outline-primary"

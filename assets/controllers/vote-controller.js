@@ -3,6 +3,10 @@ import { Controller } from '@hotwired/stimulus';
 export default class extends Controller {
     static targets = ['total'];
 
+    static values = {
+        url: String,
+    }
+
     upVote() {
         this.#changeVote('up');
     }
@@ -12,6 +16,7 @@ export default class extends Controller {
     }
 
     #changeVote(direction) {
+        console.log(this.urlValue);
         const total = parseInt(this.totalTarget.innerHTML.trim());
         const change = direction === 'up' ? 1 : -1;
 
