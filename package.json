@@ -9,6 +9,7 @@
         "@symfony/stimulus-testing": "^2.0.1",
         "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets",
+        "@symfony/ux-turbo-mercure": "file:vendor/symfony/ux-turbo-mercure/Resources/assets",
         "@symfony/webpack-encore": "^4.0.0",
         "@testing-library/dom": "^8.19.0",
         "@testing-library/user-event": "^14.4.3",
