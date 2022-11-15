@@ -3,3 +3,13 @@
         {{ include('mix/_trackListEdit.html.twig') }}
     </template>
 </turbo-stream>
+
+<turbo-stream action="append" target="toast-container">
+    <template>
+        {% embed '_toast.html.twig' %}
+            {% block toast_body %}
+                Track added! Nice!
+            {% endblock %}
+        {% endembed %}
+    </template>
+</turbo-stream>
