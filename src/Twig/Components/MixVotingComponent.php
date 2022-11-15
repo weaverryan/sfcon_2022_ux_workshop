@@ -12,6 +12,7 @@ final class MixVotingComponent
 {
     use DefaultActionTrait;
 
+    #[LiveProp]
     public VinylMix $mix;
 
     #[LiveProp(writable: true)]
