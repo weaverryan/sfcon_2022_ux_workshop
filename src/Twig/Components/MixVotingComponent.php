@@ -14,7 +14,4 @@ final class MixVotingComponent
 
     #[LiveProp]
     public VinylMix $mix;
-
-    #[LiveProp(writable: true)]
-    public string $firstName = 'Ryan';
 }
