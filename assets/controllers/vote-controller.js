@@ -20,10 +20,7 @@ export default class extends Controller {
             method: 'POST',
             body: JSON.stringify({direction: direction})
         });
-        console.log(response);
-        const total = parseInt(this.totalTarget.innerHTML.trim());
-        const change = direction === 'up' ? 1 : -1;
 
-        this.totalTarget.innerHTML = total + change;
+        this.element.innerHTML = await response.text();
     }
 }
