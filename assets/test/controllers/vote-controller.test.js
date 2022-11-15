@@ -1,6 +1,8 @@
 import { Application } from '@hotwired/stimulus';
 import { clearDOM, mountDOM } from '@symfony/stimulus-testing';
 import VoteController from '../../controllers/vote-controller';
+import userEvent from '@testing-library/user-event';
+import { getByText } from '@testing-library/dom';
 
 const startStimulus = () => {
     const application = Application.start();
@@ -28,7 +30,8 @@ describe('VoteController', () => {
 
         startStimulus();
 
-        // Write a test here ...
+        await userEvent.click(getByText(container, 'Up'));
+        expect(container.textContent).toContain('11 votes');
     });
 
     // You can create other tests here
