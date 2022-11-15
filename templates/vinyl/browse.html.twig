@@ -44,11 +44,15 @@
                     </a>
                 </div>
                 {% endfor %}
-
-                <div class="my-4">
-                    {{ pagerfanta(pager) }}
-                </div>
             </div>
+
+            {% if pager.hasNextPage %}
+                <turbo-frame
+                    id="mix-list-page-{{ pager.nextPage }}"
+                    src="{{ pagerfanta_page_url(pager, pager.nextPage) }}"
+                    loading="lazy"
+                ></turbo-frame>
+            {% endif %}
         </turbo-frame>
     </div>
 </div>
