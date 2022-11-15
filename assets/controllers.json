@@ -8,6 +8,12 @@
                     "tom-select/dist/css/tom-select.default.css": false
                 }
             }
+        },
+        "@symfony/ux-turbo": {
+            "turbo-core": {
+                "enabled": true,
+                "fetch": "eager"
+            }
         }
     },
     "entrypoints": []
