@@ -16,9 +16,12 @@
                     withControls: true
                 }) }}
             {% endfor %}
-            <a href="{{ path('app_mix_edit_add_song', {
-                slug: mix.slug,
-            }) }}" class="btn btn-success"><i class="fas fa-plus"></i> Add a song</a>
+
+            <turbo-frame id="add-song-form">
+                <a href="{{ path('app_mix_edit_add_song', {
+                    slug: mix.slug,
+                }) }}" class="btn btn-success"><i class="fas fa-plus"></i> Add a song</a>
+            </turbo-frame>
         </div>
     </div>
 </div>

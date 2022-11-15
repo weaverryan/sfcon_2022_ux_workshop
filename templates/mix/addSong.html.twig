@@ -6,14 +6,16 @@
 <div class="container">
     <h1>Add a Song</h1>
 
-    {{ form_start(form) }}
-        {{ form_row(form.songTitle) }}
-        {{ form_row(form.artistName) }}
-        {{ form_row(form.length) }}
+    <turbo-frame id="add-song-form">
+        {{ form_start(form) }}
+            {{ form_row(form.songTitle) }}
+            {{ form_row(form.artistName) }}
+            {{ form_row(form.length) }}
 
-        <button type="submit" class="btn btn-primary" formnovalidate>Add <span class="fa fa-plus"></span></button>
-        <a href="{{ path('app_mix_edit', { slug: mix.slug }) }}">cancel</a>
-    {{ form_end(form) }}
+            <button type="submit" class="btn btn-primary" formnovalidate>Add <span class="fa fa-plus"></span></button>
+            <a href="{{ path('app_mix_edit', { slug: mix.slug }) }}">cancel</a>
+        {{ form_end(form) }}
+    </turbo-frame>
 </div>
 {% endblock %}
 
