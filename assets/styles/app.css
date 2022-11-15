@@ -1,5 +1,6 @@
 @import '~bootstrap';
 @import '~@fontsource/roboto-condensed';
+@import '~tom-select/dist/css/tom-select.bootstrap5.css';
 
 body {
     background-color: #17242C;
