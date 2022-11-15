@@ -17,6 +17,7 @@
                     <span>{{ mix.votes }}</span> votes
                     <button
                         class="btn btn-outline-primary"
+                        {{ stimulus_action('vote', 'upVote') }}
                     ><span class="fa fa-thumbs-up"></span></button>
                     <button
                         class="btn btn-outline-primary"
