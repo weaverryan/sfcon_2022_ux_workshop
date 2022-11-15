@@ -14,7 +14,7 @@
                 <p>{{ mix.description }}</p>
 
                 <div {{ stimulus_controller('vote') }}>
-                    <span>{{ mix.votes }}</span> votes
+                    <span {{ stimulus_target('vote', 'total') }}>{{ mix.votes }}</span> votes
                     <button
                         class="btn btn-outline-primary"
                         {{ stimulus_action('vote', 'upVote') }}
