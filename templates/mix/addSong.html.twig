@@ -8,7 +8,9 @@
 
     <turbo-frame id="add-song-form">
         {{ form_start(form) }}
-            {{ form_row(form.songTitle) }}
+            {{ form_row(form.songTitle, {
+                attr: {autofocus: true}
+            }) }}
             {{ form_row(form.artistName) }}
             {{ form_row(form.length) }}
 
