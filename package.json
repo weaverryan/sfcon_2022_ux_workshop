@@ -8,6 +8,7 @@
         "@symfony/stimulus-bridge": "^3.2.0",
         "@symfony/stimulus-testing": "^2.0.1",
         "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
+        "@symfony/ux-live-component": "file:vendor/symfony/ux-live-component/assets",
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets",
         "@symfony/ux-turbo-mercure": "file:vendor/symfony/ux-turbo-mercure/Resources/assets",
         "@symfony/webpack-encore": "^4.0.0",
