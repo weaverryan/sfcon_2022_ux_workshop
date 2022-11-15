@@ -19,4 +19,9 @@ final class RegistrationFormComponent extends AbstractController
     {
         return $this->createForm(RegistrationFormType::class);
     }
+
+    private function getDataModelValue(): ?string
+    {
+        return 'on(input)|*';
+    }
 }
