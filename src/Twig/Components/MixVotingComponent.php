@@ -3,6 +3,7 @@
 namespace App\Twig\Components;
 
 use App\Entity\VinylMix;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
@@ -18,12 +19,13 @@ final class MixVotingComponent
     public VinylMix $mix;
 
     #[LiveAction]
-    public function vote(#[LiveArg] string $direction)
+    public function vote(#[LiveArg] string $direction, EntityManagerInterface $entityManager)
     {
         if ($direction === 'up') {
             $this->mix->upVote();
         } else {
             $this->mix->downVote();
         }
+        $entityManager->flush();
     }
 }
