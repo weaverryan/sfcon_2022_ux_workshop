@@ -9,7 +9,7 @@
         <div class="col-12 col-md-4">
             {{ include('mix/_recordSvg.html.twig') }}
         </div>
-        <div class="col-12 col-md-8 ps-5">
+        <div class="col-12 col-md-8 ps-5" id="track-list-edit">
             <h2 class="mb-4">{{ mix.tracks|length }} songs ({{ mix.MinutesRemaining }} minutes of {{ mix.totalPossibleMinutes }} still available)</h2>
             {% for track in mix.tracks %}
                 {{ include('mix/_song_item.html.twig', {
