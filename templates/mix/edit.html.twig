@@ -10,18 +10,7 @@
             {{ include('mix/_recordSvg.html.twig') }}
         </div>
         <div class="col-12 col-md-8 ps-5" id="track-list-edit">
-            <h2 class="mb-4">{{ mix.tracks|length }} songs ({{ mix.MinutesRemaining }} minutes of {{ mix.totalPossibleMinutes }} still available)</h2>
-            {% for track in mix.tracks %}
-                {{ include('mix/_song_item.html.twig', {
-                    withControls: true
-                }) }}
-            {% endfor %}
-
-            <turbo-frame id="add-song-form">
-                <a href="{{ path('app_mix_edit_add_song', {
-                    slug: mix.slug,
-                }) }}" class="btn btn-success"><i class="fas fa-plus"></i> Add a song</a>
-            </turbo-frame>
+            {{ include('mix/_trackListEdit.html.twig') }}
         </div>
     </div>
 </div>
