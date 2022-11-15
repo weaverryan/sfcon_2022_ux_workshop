@@ -8,4 +8,10 @@ export default class extends Controller {
 
         this.totalTarget.innerHTML = total + 1;
     }
+
+    downVote() {
+        const total = parseInt(this.totalTarget.innerHTML.trim());
+
+        this.totalTarget.innerHTML = total - 1;
+    }
 }
