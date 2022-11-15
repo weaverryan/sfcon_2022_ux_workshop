@@ -8,7 +8,9 @@
             <div class="col-6">
                 <h1>Register</h1>
 
-                {{ component('registration_form') }}
+                {{ component('registration_form', {
+                    form: form
+                }) }}
             </div>
         </div>
     </div>
