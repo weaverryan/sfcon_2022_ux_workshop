@@ -18,6 +18,9 @@ final class MixVotingComponent
     #[LiveProp]
     public VinylMix $mix;
 
+    #[LiveProp]
+    public bool $hasVoted = false;
+
     #[LiveAction]
     public function vote(#[LiveArg] string $direction, EntityManagerInterface $entityManager)
     {
@@ -27,5 +30,6 @@ final class MixVotingComponent
             $this->mix->downVote();
         }
         $entityManager->flush();
+        $this->hasVoted = true;
     }
 }
