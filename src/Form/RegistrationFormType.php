@@ -26,6 +26,7 @@ class RegistrationFormType extends AbstractType
                 'choice_label' => function(Track $track) {
                     return sprintf('%s (by %s)', $track->getSongTitle(), $track->getArtistName());
                 },
+                'autocomplete' => true,
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
