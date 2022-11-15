@@ -15,7 +15,7 @@ export default class extends Controller {
         this.#changeVote('down');
     }
 
-    #changeVote(direction) {
+    async #changeVote(direction) {
         const response = await fetch(this.urlValue, {
             method: 'POST',
             body: JSON.stringify({direction: direction})
