@@ -2,6 +2,7 @@
 
 namespace App\Twig\Components;
 
+use App\Entity\VinylMix;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
@@ -9,4 +10,6 @@ use Symfony\UX\LiveComponent\DefaultActionTrait;
 final class MixVotingComponent
 {
     use DefaultActionTrait;
+
+    public VinylMix $mix;
 }
