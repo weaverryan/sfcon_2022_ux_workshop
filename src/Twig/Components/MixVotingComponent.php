@@ -4,6 +4,8 @@ namespace App\Twig\Components;
 
 use App\Entity\VinylMix;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
@@ -14,4 +16,14 @@ final class MixVotingComponent
 
     #[LiveProp]
     public VinylMix $mix;
+
+    #[LiveAction]
+    public function vote(#[LiveArg] string $direction)
+    {
+        if ($direction === 'up') {
+            $this->mix->upVote();
+        } else {
+            $this->mix->downVote();
+        }
+    }
 }

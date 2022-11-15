@@ -2,8 +2,12 @@
     <span>{{ mix.votes }}</span> votes
     <button
         class="btn btn-outline-primary"
+        data-action="live#action"
+        data-action-name="vote(direction=up)"
     ><span class="fa fa-thumbs-up"></span></button>
     <button
         class="btn btn-outline-primary"
+        data-action="live#action"
+        data-action-name="vote(direction=down)"
     ><span class="fa fa-thumbs-down"></span></button>
 </div>
