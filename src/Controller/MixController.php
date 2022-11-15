@@ -44,6 +44,7 @@ class MixController extends AbstractController
             $track->setTrackNumber($mix->getNextTrackNumber());
 
             $entityManager->persist($track);
+            $mix->setUpdatedAt(new \DateTime());
             $entityManager->flush();
 
             if ($request->getPreferredFormat() === TurboBundle::STREAM_FORMAT) {
