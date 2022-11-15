@@ -1,4 +1,5 @@
 @import '~bootstrap';
+@import '~@fontsource/roboto-condensed';
 
 body {
     background-color: #17242C;
