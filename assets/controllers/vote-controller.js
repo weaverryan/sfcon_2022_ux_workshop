@@ -4,14 +4,17 @@ export default class extends Controller {
     static targets = ['total'];
 
     upVote() {
-        const total = parseInt(this.totalTarget.innerHTML.trim());
-
-        this.totalTarget.innerHTML = total + 1;
+        this.#changeVote('up');
     }
 
     downVote() {
-        const total = parseInt(this.totalTarget.innerHTML.trim());
+        this.#changeVote('down');
+    }
 
-        this.totalTarget.innerHTML = total - 1;
+    #changeVote(direction) {
+        const total = parseInt(this.totalTarget.innerHTML.trim());
+        const change = direction === 'up' ? 1 : -1;
+
+        this.totalTarget.innerHTML = total + change;
     }
 }
