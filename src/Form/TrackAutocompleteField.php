@@ -16,8 +16,10 @@ class TrackAutocompleteField extends AbstractType
     {
         $resolver->setDefaults([
             'class' => Track::class,
-            'placeholder' => 'Choose a Track',
-            //'choice_label' => 'name',
+            'placeholder' => 'Choose a song',
+            'choice_label' => function(Track $track) {
+                return sprintf('%s (by %s)', $track->getSongTitle(), $track->getArtistName());
+            },
 
             'query_builder' => function(TrackRepository $trackRepository) {
                 return $trackRepository->createQueryBuilder('track');
